@@ -1,54 +1,45 @@
 package com.sparta.imenu_client.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.sparta.imenu_client.R;
-
 public class LoginActivity extends AppCompatActivity {
-
+    boolean usernameTextFlag;
+    boolean passwordTextFlag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        usernameTextFlag= false;
+        passwordTextFlag= false;
+        final EditText passwordText = (EditText) findViewById(R.id.passwordText) ;
+        final EditText usernameText = (EditText) findViewById(R.id.usernameText);
+        passwordText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!passwordTextFlag){
+                    passwordTextFlag=true;
+                    hasFocus =false;
+                }
+            }
+        });
+        usernameText.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!usernameTextFlag){
+                    usernameTextFlag=true;
+                    hasFocus=false;
+                }
             }
         });
     }
+    public void loginHandler(View view){
+        // here is the button listener
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
