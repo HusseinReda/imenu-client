@@ -1,5 +1,6 @@
 package com.sparta.imenu_client.service;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,9 +15,15 @@ import org.springframework.web.client.RestTemplate;
  */
 
 public class LoginAuthService extends AsyncTask<Void, Void, String> {
+    Context context;
+
+    public LoginAuthService(Context context) {
+        this.context = context;
+    }
+
     @Override
     protected String doInBackground(Void... params) {
-        final String url = String.valueOf(R.string.url);
+        final String url = context.getString(R.string.url);
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         String result = restTemplate.getForObject(url, String.class);
@@ -27,6 +34,6 @@ public class LoginAuthService extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-  //      Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, result+"\nLog in successful", Toast.LENGTH_LONG).show();
     }
 }

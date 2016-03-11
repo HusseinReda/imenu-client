@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     public void loginHandler(View view){
-        LoginAuthService service = new LoginAuthService();
+        LoginAuthService service = new LoginAuthService(this);
         service.execute();
     }
 }
