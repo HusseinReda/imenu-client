@@ -2,12 +2,15 @@ package com.sparta.imenu_client.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.sparta.imenu_client.R;
+import com.sparta.imenu_client.service.LoginAuthService;
+
 public class LoginActivity extends AppCompatActivity {
     boolean usernameTextFlag;
     boolean passwordTextFlag;
@@ -39,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     public void loginHandler(View view){
-        // here is the button listener
-
+        LoginAuthService service = new LoginAuthService();
+        service.execute();
     }
 }
