@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Imenu-client</string>
     <string name="action_settings">Settings</string>
-    <string name="url">http://imenu.elasticbeanstalk.com/</string>
+    <string name="url">http://lambada.eu-central-1.elasticbeanstalk.com/</string>
 </resources>
