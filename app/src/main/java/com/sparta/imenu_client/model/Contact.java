@@ -9,7 +9,6 @@ public class Contact {
         this.phoneNumber = phoneNumber;
         this.restaurantId = restaurantId;
     }
-
     public String getAddress() {
         return address;
     }

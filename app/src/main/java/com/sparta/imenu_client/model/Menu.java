@@ -36,6 +36,5 @@ public class Menu {
         }
         sections = temp;
         // call the service
-
     }
 }
