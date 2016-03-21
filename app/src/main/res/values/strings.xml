@@ -2,4 +2,14 @@
     <string name="app_name">Imenu-client</string>
     <string name="action_settings">Settings</string>
     <string name="url">http://lambada.eu-central-1.elasticbeanstalk.com/</string>
+    <string name="enterYourEmail">Enter your email</string>
+    <string name="password">Password</string>
+    <string name="login">Log In</string>
+    <string name="dontHaveAccount">"You don't have an account yet?"</string>
+    <string name="radio_male">Male</string>
+    <string name="radio_female">Female</string>
+    <string name="new_full_name">Full name</string>
+    <string name="new_email">Email</string>
+    <string name="gender">Gender</string>
+    <string name="signUp">Sign Up</string>
 </resources>

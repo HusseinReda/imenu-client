@@ -37,6 +37,13 @@ public class User {
         this.city = city;
     }
 
+    public User(String name, String email, String password, String gender) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.gender = gender;
+    }
+
     public int getId() {
         return id;
     }
