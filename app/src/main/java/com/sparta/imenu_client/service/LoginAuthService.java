@@ -10,8 +10,10 @@ import android.widget.Toast;
 
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.activity.LoginActivity;
+import com.sparta.imenu_client.model.UserRequest;
 
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,9 +26,11 @@ import java.util.List;
 
 public class LoginAuthService extends AsyncTask<Void, Void, Boolean> {
     LoginActivity context;
+    UserRequest userRequest;
 
-    public LoginAuthService(LoginActivity context) {
+    public LoginAuthService(LoginActivity context, UserRequest userRequest) {
         this.context = context;
+        this.userRequest=userRequest;
     }
 
     @Override
@@ -34,10 +38,9 @@ public class LoginAuthService extends AsyncTask<Void, Void, Boolean> {
         final String url = context.getString(R.string.url)+"user/authenticate";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-        Pair<String,String> credentials= new Pair<>(context.getUsername(),context.getPassword());
-        Log.i("LoginActivity", credentials.toString());
-        boolean result = restTemplate.postForObject(url, credentials, boolean.class);
+        restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
+        Log.i("LoginActivity", userRequest.toString());
+        boolean result = restTemplate.postForObject(url, userRequest, boolean.class);
         Log.i("LoginActivity","button pressed");
         return result;
     }

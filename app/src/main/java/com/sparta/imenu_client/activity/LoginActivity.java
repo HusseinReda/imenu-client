@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.model.User;
+import com.sparta.imenu_client.model.UserRequest;
 import com.sparta.imenu_client.service.LoginAuthService;
 import com.sparta.imenu_client.service.SignUpService;
 
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginHandler(View view) {
-        LoginAuthService service = new LoginAuthService(this);
+        LoginAuthService service = new LoginAuthService(this,new UserRequest(getUsername(),getPassword()));
         service.execute();
     }
     public void signUpHandler(View view) {
