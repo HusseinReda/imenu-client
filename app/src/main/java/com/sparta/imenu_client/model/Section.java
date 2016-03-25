@@ -1,5 +1,6 @@
 package com.sparta.imenu_client.model;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +10,9 @@ import java.util.List;
 public class Section {
     private int id;
     private List<Item> items;
-    private int menuId;
+
     public int getId(){
         return id;
-    }
-    public int getMenuId() {
-        return menuId;
     }
 
     public List<Item> getItems() {
@@ -24,7 +22,6 @@ public class Section {
     public Section(List<Item> items, int menuId) {
 
         this.items = items;
-        this.menuId = menuId;
     }
     public void addItem (Item item){
         items.add(item);

@@ -4,10 +4,10 @@ package com.sparta.imenu_client.model;
  * Created by hamed on 3/19/16.
  */
 public class Contact {
-    public Contact(String address, String phoneNumber, int restaurantId) {
+    public Contact(String address, String phoneNumber, int id) {
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.restaurantId = restaurantId;
+        this.id = id;
     }
     public String getAddress() {
         return address;
@@ -17,12 +17,12 @@ public class Contact {
         return phoneNumber;
     }
 
-    public int getRestaurantId() {
-        return restaurantId;
+    public int getId() {
+        return id;
     }
 
     private String address;
     private String phoneNumber;
-    private int restaurantId;
+    private int id;
 
 }

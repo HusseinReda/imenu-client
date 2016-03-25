@@ -5,10 +5,10 @@ package com.sparta.imenu_client.model;
  */
 
 public class RestaurantReview extends Review {
-    private int restaurantId;
+    private Restaurant restaurant;
 
-    public RestaurantReview(int restaurantId, int userId, String reviewText, int rating) {
-        super(userId, reviewText, rating);
-        this.restaurantId=restaurantId;
+    public RestaurantReview(Restaurant restaurant,User user, String reviewText, int rating) {
+        super(user, reviewText, rating);
+        this.restaurant=restaurant;
     }
 }

@@ -1,5 +1,6 @@
 package com.sparta.imenu_client.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,13 +9,11 @@ import java.util.List;
 
 public class UserSpec {
     private int id;
-    private int userId;
     private String name;
     private String note;
-    private List<String> keywords;
+    private ArrayList<String> keywords;
 
-    public UserSpec(int userId, String name, String note, List<String> keywords) {
-        this.userId = userId;
+    public UserSpec(String name, String note, ArrayList<String> keywords) {
         this.name = name;
         this.note = note;
         this.keywords = keywords;
@@ -26,14 +25,6 @@ public class UserSpec {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getName() {
@@ -56,7 +47,7 @@ public class UserSpec {
         return keywords;
     }
 
-    public void setKeywords(List<String> keywords) {
+    public void setKeywords(ArrayList<String> keywords) {
         this.keywords = keywords;
     }
 }

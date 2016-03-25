@@ -5,10 +5,10 @@ package com.sparta.imenu_client.model;
  */
 
 public class ItemReview extends Review {
-    private int itemId;
+    private Item item;
 
-    public ItemReview(int itemId, int userId, String reviewText, int rating) {
-        super(userId, reviewText, rating);
-        this.itemId=itemId;
+    public ItemReview(Item item, User user, String reviewText, int rating) {
+        super(user, reviewText, rating);
+        this.item =item;
     }
 }

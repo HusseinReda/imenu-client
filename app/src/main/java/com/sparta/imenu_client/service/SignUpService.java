@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.gs.collections.api.tuple.Pair;
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.activity.LoginActivity;
 import com.sparta.imenu_client.model.User;
@@ -20,15 +19,15 @@ import org.springframework.web.client.RestTemplate;
 public class SignUpService extends AsyncTask<Void, Void, Boolean> {
     LoginActivity context;
     User newUser;
-
     public SignUpService(LoginActivity context, User newUser) {
         this.context=context;
         this.newUser=newUser;
     }
 
+    ///should check for internet connectivity
     @Override
     protected Boolean doInBackground(Void... params) {
-        final String url = context.getString(R.string.url)+"user/authenticate";
+        final String url = context.getString(R.string.url)+"user/add";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());

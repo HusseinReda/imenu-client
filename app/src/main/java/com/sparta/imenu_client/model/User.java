@@ -4,7 +4,9 @@ import com.sparta.imenu_client.service.HealthIssueService;
 import com.sparta.imenu_client.service.PreferenceService;
 import com.sparta.imenu_client.service.RestrictionService;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,10 +24,13 @@ public class User {
     private String country;
     private String city;
     private String picture;
-    private List<String> preferences;
+    ///////
+    private ArrayList<Contact> contacts;
+    //////
+    private ArrayList<String> preferences;
     private List<UserSpec> healthIssues;
     private List<UserSpec> restrictions;
-    private List<Review> reviews;
+    private ArrayList<Review> reviews;
 
     public User(String name, String email, String password, String gender, Date dateOfBirth, String country, String city) {
         this.name = name;
@@ -124,11 +129,11 @@ public class User {
         this.picture = picture;
     }
 
-    public List<String> getPreferences() {
+    public ArrayList<String> getPreferences() {
         return preferences;
     }
 
-    public void setPreferences(List<String> preferences) {
+    public void setPreferences(ArrayList<String> preferences) {
         this.preferences = preferences;
     }
 
@@ -136,7 +141,7 @@ public class User {
         return healthIssues;
     }
 
-    public void setHealthIssues(List<UserSpec> healthIssues) {
+    public void setHealthIssues(ArrayList<UserSpec> healthIssues) {
         this.healthIssues = healthIssues;
     }
 
@@ -144,13 +149,13 @@ public class User {
         return restrictions;
     }
 
-    public void setRestrictions(List<UserSpec> restrictions) {
+    public void setRestrictions(ArrayList<UserSpec> restrictions) {
         this.restrictions = restrictions;
     }
 
     public void addPreference(String preference){
         PreferenceService addPreferenceService = new PreferenceService(getId(),preference,"add");
-        if(addPreferenceService.getResult()== "OK")
+        if(addPreferenceService.getResult().equals("OK"))
             getPreferences().add(preference);
     }
 
@@ -162,14 +167,14 @@ public class User {
         int exist = getPreferences().indexOf(preference);
         if(exist!=-1) {
             PreferenceService removePreferenceService = new PreferenceService(getId(),preference,"remove");
-            if(removePreferenceService.getResult()=="OK")
+            if(removePreferenceService.getResult().equals("OK"))
                 getPreferences().remove(preference);
         }
     }
 
     public void addHealthIssue(UserSpec healthIssue){
         HealthIssueService addHealthIssueService = new HealthIssueService(getId(),healthIssue,"add");
-        if(addHealthIssueService.getResult()=="OK")
+        if(addHealthIssueService.getResult().equals("OK"))
             getHealthIssues().add(healthIssue);
     }
 
@@ -180,7 +185,7 @@ public class User {
             if(healthIssues.get(i).getName().equals(healthIssueName)) {
                 healthIssue = healthIssues.get(i);
                 HealthIssueService removeHealthIssueService = new HealthIssueService(getId(),healthIssue,"remove");
-                if(removeHealthIssueService.getResult()=="OK")
+                if(removeHealthIssueService.getResult().equals("OK"))
                     getHealthIssues().remove(healthIssue);
                 break;
             }
@@ -190,7 +195,7 @@ public class User {
     //to be implemented
     public void addRestriction(UserSpec restriction){
         RestrictionService addRestrictionService = new RestrictionService(getId(),restriction,"add");
-        if(addRestrictionService.getResult()=="OK")
+        if(addRestrictionService.getResult().equals("OK"))
             getRestrictions().add(restriction);
     }
 
@@ -202,7 +207,7 @@ public class User {
             if(restrictions.get(i).getName().equals(restrictionName)) {
                 restriction = restrictions.get(i);
                 RestrictionService removeRestrictionService = new RestrictionService(getId(), restriction,"remove");
-                if(removeRestrictionService.getResult()=="OK")
+                if(removeRestrictionService.getResult().equals("OK"))
                     getHealthIssues().remove(restriction);
                 break;
             }

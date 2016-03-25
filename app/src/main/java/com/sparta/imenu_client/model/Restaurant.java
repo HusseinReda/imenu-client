@@ -1,5 +1,6 @@
 package com.sparta.imenu_client.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +14,8 @@ public class Restaurant {
     private String picture;
     private Menu menu;
     private List<Contact> contacts;
-    private List<RestaurantReview> reviews;
-    private double rating;
+    private ArrayList<RestaurantReview> reviews;
+    private float rating;
 
     public String getName() {
         return name;
@@ -36,19 +37,19 @@ public class Restaurant {
         return menu;
     }
 
-    public List<Contact> getContacts() {
+    public List getContacts() {
         return contacts;
     }
 
-    public List<RestaurantReview> getReviews() {
+    public ArrayList<RestaurantReview> getReviews() {
         return reviews;
     }
 
-    public double getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public Restaurant(String name, String category, String description, String picture, Menu menu, List<Contact> contacts) {
+    public Restaurant(String name, String category, String description, String picture, Menu menu, ArrayList<Contact> contacts) {
         this.name = name;
         this.category = category;
         this.description = description;

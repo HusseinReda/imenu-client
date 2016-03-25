@@ -6,12 +6,12 @@ package com.sparta.imenu_client.model;
 
 public class Review {
     private int id;
-    private int userId;
+    private User user;
     private String reviewText;
     private int rating;
 
-    public Review(int userId, String reviewText, int rating) {
-        this.userId = userId;
+    public Review(User user, String reviewText, int rating) {
+        this.user = user;
         this.reviewText = reviewText;
         this.rating = rating;
     }
@@ -20,12 +20,12 @@ public class Review {
         return id;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUserId() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(User user) {
+        this.user = user;
     }
 
     public String getReviewText() {
