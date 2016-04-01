@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Item {
     private int id;
     private String name;
+    private String restaurantName;
     private String type;
     private double price;
     private String description;
@@ -16,15 +17,16 @@ public class Item {
     private String picture;
     private float rating;
 
-    public Item(String name, String type, double price, String description, ArrayList<String> keywords, String picture) {
+    public Item(String name, String restaurantName, String type, double price, String description, ArrayList<String> keywords, String picture) {
         this.name = name;
         this.type = type;
         this.price = price;
         this.description = description;
         this.keywords = keywords;
         this.picture = picture;
+        this.restaurantName=restaurantName;
     }
-
+    
     public String getName() {
         return name;
     }
