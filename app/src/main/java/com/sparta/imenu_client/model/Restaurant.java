@@ -49,6 +49,9 @@ public class Restaurant {
         return rating;
     }
 
+    public void addMenu (Menu menu){
+        this.menu = menu;
+    }
     public Restaurant(String name, String category, String description, String picture, Menu menu, ArrayList<Contact> contacts) {
         this.name = name;
         this.category = category;
