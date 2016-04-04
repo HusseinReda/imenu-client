@@ -13,7 +13,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.model.User;
 import com.sparta.imenu_client.model.UserRequest;
+<<<<<<< HEAD
 import com.sparta.imenu_client.service.AddRestaurant;
+=======
+>>>>>>> 4f91d9b43b73f18457ed993135ca27bea0d50aeb
 import com.sparta.imenu_client.service.LoginAuthService;
 import com.sparta.imenu_client.service.SignUpService;
 
@@ -57,9 +60,12 @@ public class LoginActivity extends AppCompatActivity {
         LoginAuthService service = new LoginAuthService(this,new UserRequest(getUsername(),getPassword()));
         service.execute();
     }
+<<<<<<< HEAD
     public void addRestaurantHandler(View view) {
         new AddRestaurant().execute();
     }
+=======
+>>>>>>> 4f91d9b43b73f18457ed993135ca27bea0d50aeb
     public void signUpHandler(View view) {
         EditText fullName= (EditText)findViewById(R.id.fullNameEditText);
         EditText email= (EditText)findViewById(R.id.emailEditText);

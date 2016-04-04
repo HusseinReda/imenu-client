@@ -8,12 +8,20 @@ import java.util.ArrayList;
 public class Menu {
     private int id;
     private ArrayList<Section> sections;
+<<<<<<< HEAD
     public Menu (){
         sections = new ArrayList<Section>();
     }
 //    public Menu(ArrayList<Section> sections) {
 //        this.sections = sections;
 //    }
+=======
+
+    public Menu(ArrayList<Section> sections) {
+        this.sections = sections;
+    }
+
+>>>>>>> 4f91d9b43b73f18457ed993135ca27bea0d50aeb
     public ArrayList<Section> getSections() {
         return sections;
     }

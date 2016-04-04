@@ -3,7 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/imenu-client-master.iml" filepath="$PROJECT_DIR$/imenu-client-master.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/imenu-client.iml" filepath="$PROJECT_DIR$/imenu-client.iml" />
+>>>>>>> 4f91d9b43b73f18457ed993135ca27bea0d50aeb
     </modules>
   </component>
 </project>
