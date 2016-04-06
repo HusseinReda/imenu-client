@@ -32,15 +32,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'org.springframework.android:spring-android-rest-template:2.0.0.M3'
-<<<<<<< HEAD
     compile 'com.fasterxml.jackson.core:jackson-core:2.7.3'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.3'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
-=======
-//    compile 'com.fasterxml.jackson.core:jackson-core:2.7.3'
-//    compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.3'
-//    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
->>>>>>> 4f91d9b43b73f18457ed993135ca27bea0d50aeb
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.goldmansachs:gs-collections-api:4.1.0'

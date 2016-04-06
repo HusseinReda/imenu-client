@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.HomeActivity">
+
+    <item
+        android:id="@+id/action_profile"
+        android:orderInCategory="800"
+        android:title="@string/action_profile"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="900"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="1000"
+        android:title="@string/action_logout"
+        app:showAsAction="never" />
+
+</menu>

@@ -151,7 +151,6 @@
         android:text="@string/signUp"
         android:onClick="signUpHandler" />
 
-<<<<<<< HEAD
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -162,6 +161,4 @@
         android:layout_toStartOf="@+id/radioGenderGroup"
         android:onClick="addRestaurantHandler"/>
 
-=======
->>>>>>> 4f91d9b43b73f18457ed993135ca27bea0d50aeb
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.sparta.imenu_client.service;
 import android.os.AsyncTask;
 
 import com.sparta.imenu_client.R;
+import com.sparta.imenu_client.activity.LoginActivity;
 import com.sparta.imenu_client.model.Item;
 import com.sparta.imenu_client.model.Menu;
 import com.sparta.imenu_client.model.Restaurant;
@@ -20,6 +21,12 @@ import java.util.Arrays;
  * Created by hamed on 4/1/16.
  */
 public class AddRestaurant extends AsyncTask<Void,Void,String> {
+    LoginActivity context;
+
+    public AddRestaurant(LoginActivity context) {
+        this.context = context;
+    }
+
     @Override
     protected String doInBackground(Void... params) {
         RestTemplate restTemplate=  new RestTemplate();
@@ -28,11 +35,9 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
         Restaurant restaurant= new Restaurant("KFC","Fast food","KFC Cairo",
                 "https://media.glassdoor.com/sql/559399/kfc-holdings-squarelogo-1428385037396.png",
                 null,null);
-<<<<<<< HEAD
+
         Menu menu = new Menu();
-=======
-        Menu menu = new Menu(null);
->>>>>>> 4f91d9b43b73f18457ed993135ca27bea0d50aeb
+
         String names[] = {"Mighty Bucket Meal","Mighty Popcorn Meal","My Meal","Super Snack Meal","Super Snack Meal",
         "Dinner Box","Dinner Box","Extra Chicken Piece"};
         String urls[]={"https://assets.otlob.com/dynamic/images/products/62/62574_1453380791_ma.png",
@@ -52,11 +57,8 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
         "2 pieces fried chicken + small French fries + bun",
         "3 pieces fried chicken + small French fries + coleslaw salad + bun",
         "3 pieces fried chicken + medium French fries + coleslaw salad + bun",
-<<<<<<< HEAD
         "a"};
-=======
-        ""};
->>>>>>> 4f91d9b43b73f18457ed993135ca27bea0d50aeb
+
         ArrayList<String> keywords[] = new ArrayList[]{new ArrayList<String>(Arrays.asList("chicken","strips","fries",
                 "coleslaw","salad","bun","garlic mayonnaise sauce","dynamite sauce","drink","bread" )),
                 new ArrayList<String>(Arrays.asList("chicken","strips","popcorn","fries","coleslaw","bun","garlic mayonnaise sauce","dynamite sauce","drink","bread")),
@@ -64,10 +66,6 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
                 new ArrayList<String>(Arrays.asList("chicken","2 pieces","rice","large rice","fries","bun","bread")),
                 new ArrayList<String>(Arrays.asList("chicken","2 pieces","fries","bun","bread")),
                 new ArrayList<String>(Arrays.asList("chicken","3 pieces","fries","small fries","coleslaw","salad","bun","bread")),
-<<<<<<< HEAD
-                new ArrayList<String>(Arrays.asList("chicken","3 pieces","fries","small fries","coleslaw","salad","bun","bread")),
-=======
->>>>>>> 4f91d9b43b73f18457ed993135ca27bea0d50aeb
                 new ArrayList<String>(Arrays.asList("chicken","3 pieces","fries","medium fries","coleslaw","salad","bun","bread"))
         };
         ArrayList<Item> items = new ArrayList<Item>();
@@ -95,11 +93,7 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
         Section section2 = new Section(items2,0);
         menu.addSection(section2);
         restaurant.addMenu(menu);
-<<<<<<< HEAD
-        String response = restTemplate.postForObject("http://lambada.eu-central-1.elasticbeanstalk.com/ "+"restaurant/add",restaurant,String.class);
-=======
-        String response = restTemplate.postForObject(R.string.url+"restaurant/add",restaurant,String.class);
->>>>>>> 4f91d9b43b73f18457ed993135ca27bea0d50aeb
+        String response = restTemplate.postForObject(context.getString(R.string.url)+"restaurant/add",restaurant,String.class);
         return response;
     }
 }
