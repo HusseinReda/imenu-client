@@ -9,6 +9,10 @@ public class Contact {
         this.phoneNumber = phoneNumber;
         this.id = id;
     }
+
+    public Contact() {
+    }
+
     public String getAddress() {
         return address;
     }

@@ -17,4 +17,14 @@
     <string name="signUp">Sign Up</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_template">TemplateActivity</string>
+    <string name="search_title">Type your dream</string>
+    <string name="search_hint">Burger, KFC, ...</string>
+    <string name="title_activity_search_results">SearchResults</string>
+    <string name="title_activity_asdasd">asdasd</string>
+    <string name="toolbar_title">ToolBar</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="food">Food</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="recommended_for_you">You may like :</string>
+    <string name="title_activity_profile">Profile</string>
 </resources>

@@ -10,6 +10,9 @@ public class Review {
     private String reviewText;
     private int rating;
 
+    public Review() {
+    }
+
     public Review(User user, String reviewText, int rating) {
         this.user = user;
         this.reviewText = reviewText;

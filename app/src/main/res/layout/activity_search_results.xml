@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activity.HomeActivity">
+    tools:context="com.sparta.imenu_client.activity.SearchResults">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -13,15 +13,12 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
     </android.support.design.widget.AppBarLayout>
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <android.support.v7.widget.Toolbar
-            android:id="@+id/home_toolbar"
+            android:id="@+id/search_toolbar"
             android:title="@string/toolbar_title"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -44,8 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="8">
-            <include layout="@layout/content_home" />
+            <include layout="@layout/content_search_results" />
         </FrameLayout>
     </LinearLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

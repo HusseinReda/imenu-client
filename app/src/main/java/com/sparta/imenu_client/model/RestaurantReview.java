@@ -7,6 +7,9 @@ package com.sparta.imenu_client.model;
 public class RestaurantReview extends Review {
     private Restaurant restaurant;
 
+    public RestaurantReview() {
+    }
+
     public RestaurantReview(Restaurant restaurant,User user, String reviewText, int rating) {
         super(user, reviewText, rating);
         this.restaurant=restaurant;

@@ -13,6 +13,9 @@ public class UserSpec {
     private String note;
     private ArrayList<String> keywords;
 
+    public UserSpec() {
+    }
+
     public UserSpec(String name, String note, ArrayList<String> keywords) {
         this.name = name;
         this.note = note;

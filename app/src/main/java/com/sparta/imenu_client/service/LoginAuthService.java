@@ -1,12 +1,8 @@
 package com.sparta.imenu_client.service;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.text.Editable;
 import android.util.Log;
-import android.util.Pair;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sparta.imenu_client.R;
@@ -16,11 +12,7 @@ import com.sparta.imenu_client.model.UserRequest;
 
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Hussein Abu Maash on 3/10/2016.
@@ -68,6 +60,7 @@ public class LoginAuthService extends AsyncTask<Void, Void, Boolean> {
                 Toast.makeText(context, "Log in successful", Toast.LENGTH_LONG).show();
                 Intent homeIntent = new Intent(context, HomeActivity.class);
                 homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                homeIntent.putExtra("username",userRequest.getEmail());
                 context.getApplicationContext().startActivity(homeIntent);
             } else {
                 Toast.makeText(context, "Incorrect email or password", Toast.LENGTH_LONG).show();

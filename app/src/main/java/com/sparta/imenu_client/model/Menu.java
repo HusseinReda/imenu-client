@@ -9,6 +9,7 @@ public class Menu {
     private int id;
     private ArrayList<Section> sections;
 
+
     public Menu (){
         sections = new ArrayList<Section>();
     }

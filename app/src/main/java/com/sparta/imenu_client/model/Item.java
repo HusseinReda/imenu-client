@@ -16,6 +16,14 @@ public class Item {
     private ArrayList<ItemReview> reviews;
     private String picture;
     private float rating;
+    private Section section;
+
+    public Section getSection() {
+        return section;
+    }
+
+    public Item() {
+    }
 
     public Item(String name, String restaurantName, String type, double price, String description, ArrayList<String> keywords, String picture) {
         this.name = name;
@@ -58,10 +66,26 @@ public class Item {
     public float getRating() {
         return rating;
     }
+
     public int getId(){
         return id;
     }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
     public void addReview (ItemReview review){
         reviews.add( review);
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", restaurantName='" + restaurantName + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

@@ -7,6 +7,11 @@ package com.sparta.imenu_client.model;
 public class ItemReview extends Review {
     private Item item;
 
+
+    public ItemReview(User user, String reviewText, int rating) {
+        super(user, reviewText, rating);
+    }
+
     public ItemReview(Item item, User user, String reviewText, int rating) {
         super(user, reviewText, rating);
         this.item =item;

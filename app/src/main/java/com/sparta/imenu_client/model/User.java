@@ -32,6 +32,9 @@ public class User {
     private List<UserSpec> restrictions;
     private ArrayList<Review> reviews;
 
+    public User() {
+    }
+
     public User(String name, String email, String password, String gender, Date dateOfBirth, String country, String city) {
         this.name = name;
         this.email = email;
@@ -47,6 +50,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.gender = gender;
+        this.preferences=new ArrayList<String>();
     }
 
     public int getId() {
@@ -153,24 +157,24 @@ public class User {
         this.restrictions = restrictions;
     }
 
-    public void addPreference(String preference){
-        PreferenceService addPreferenceService = new PreferenceService(getId(),preference,"add");
-        if(addPreferenceService.getResult().equals("OK"))
-            getPreferences().add(preference);
-    }
+//    public void addPreference(String preference){
+//        PreferenceService addPreferenceService = new PreferenceService(getEmail(),preference,"add");
+//        if(addPreferenceService.getResult())
+//            getPreferences().add(preference);
+//    }
 
     public boolean findPreference(String preference){
         return getPreferences().indexOf(preference) != -1;
     }
 
-    public void removePreference(String preference){
-        int exist = getPreferences().indexOf(preference);
-        if(exist!=-1) {
-            PreferenceService removePreferenceService = new PreferenceService(getId(),preference,"remove");
-            if(removePreferenceService.getResult().equals("OK"))
-                getPreferences().remove(preference);
-        }
-    }
+//    public void removePreference(String preference){
+//        int exist = getPreferences().indexOf(preference);
+//        if(exist!=-1) {
+//            PreferenceService removePreferenceService = new PreferenceService(getEmail(),preference,"remove");
+//            if(removePreferenceService.getResult())
+//                getPreferences().remove(preference);
+//        }
+//    }
 
     public void addHealthIssue(UserSpec healthIssue){
         HealthIssueService addHealthIssueService = new HealthIssueService(getId(),healthIssue,"add");

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -27,21 +28,19 @@ import java.util.List;
  * Created by Hussein Abu Maash on 4/6/2016.
  */
 
-public class GetRecommendedService extends AsyncTask<Void, Void, List<Item>> {
+public class GetAllItemsService extends AsyncTask<Void, Void, List<Item>> {
     HomeActivity context;
-    String username;
     RecyclerView recyclerView;
     Exception error;
     ProgressBar progressBar;
     SwipeRefreshLayout swipeRefreshLayout;
 
-    public GetRecommendedService() {
+    public GetAllItemsService() {
     }
 
-    public GetRecommendedService(HomeActivity context, String username,
-                                 RecyclerView recyclerView,ProgressBar progressBar,SwipeRefreshLayout swipeRefreshLayout) {
+    public GetAllItemsService(HomeActivity context,RecyclerView recyclerView,
+                              ProgressBar progressBar,SwipeRefreshLayout swipeRefreshLayout) {
         this.context = context;
-        this.username = username;
         this.recyclerView=recyclerView;
         this.progressBar = progressBar;
         this.swipeRefreshLayout=swipeRefreshLayout;
@@ -53,9 +52,9 @@ public class GetRecommendedService extends AsyncTask<Void, Void, List<Item>> {
     }
     @Override
     protected List<Item> doInBackground(Void... params) {
-        Log.i("recommended Act", "service started");
+        Log.i("getAll Act", "service started");
 //        Log.i("recommended Act", username);
-        final String url = context.getString(R.string.url)+"user/recommend?email="+username;
+        final String url = context.getString(R.string.url)+"item/getAll";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
@@ -73,9 +72,9 @@ public class GetRecommendedService extends AsyncTask<Void, Void, List<Item>> {
     protected void onPostExecute(List<Item> items) {
 
         progressBar.setVisibility(View.GONE);
-        Log.i("recommend service", String.valueOf(items.size()));
+        Log.i("getAll service", String.valueOf(items.size()));
         if(items.size()!=0){
-            Log.i("recommend service", String.valueOf(items.size())+" 2");
+            Log.i("getAll service", String.valueOf(items.size())+" 2");
             List<Item> itemsss=new ArrayList<Item>();
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -85,13 +84,11 @@ public class GetRecommendedService extends AsyncTask<Void, Void, List<Item>> {
             }
             ItemRecyclerViewAdapter adapter= new ItemRecyclerViewAdapter(itemsss,context);
             recyclerView.setAdapter(adapter);
-            Log.i("recommend service", String.valueOf(items.size()) + " 4");
+            Log.i("getAll service", String.valueOf(items.size()) + " 4");
         }
         else {
-            GetAllItemsService getAllItemsService= new GetAllItemsService(context,recyclerView,progressBar,swipeRefreshLayout);
-            getAllItemsService.execute();
+            Toast.makeText(context, "There is a problem in the server\nPlease try again later", Toast.LENGTH_LONG).show();
         }
         swipeRefreshLayout.setRefreshing(false);
     }
-
 }

@@ -52,6 +52,14 @@ public class Restaurant {
     public void addMenu (Menu menu){
         this.menu = menu;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public Restaurant() {
+    }
+
     public Restaurant(String name, String category, String description, String picture, Menu menu, ArrayList<Contact> contacts) {
         this.name = name;
         this.category = category;

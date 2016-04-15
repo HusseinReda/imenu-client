@@ -19,6 +19,9 @@ public class Section {
         return items;
     }
 
+    public Section() {
+    }
+
     public Section(List<Item> items, int menuId) {
 
         this.items = items;

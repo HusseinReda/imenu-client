@@ -72,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                                 email.getText().toString(),
                                 password.getText().toString(),
                                 gender.getText().toString());
+        newUser.getPreferences().add("beef");
         SignUpService signUpService=new SignUpService(this,newUser);
         signUpService.execute();
     }
