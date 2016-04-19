@@ -53,7 +53,7 @@ public class GetAllItemsService extends AsyncTask<Void, Void, List<Item>> {
     @Override
     protected List<Item> doInBackground(Void... params) {
         Log.i("getAll Act", "service started");
-//        Log.i("recommended Act", username);
+//        Log.i("recommended Act", email);
         final String url = context.getString(R.string.url)+"item/getAll";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());

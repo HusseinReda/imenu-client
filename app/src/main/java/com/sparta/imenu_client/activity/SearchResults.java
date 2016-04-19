@@ -14,9 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.SearchView;
 
 import com.sparta.imenu_client.R;
+import com.sparta.imenu_client.userInterface.LogoutDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +103,25 @@ public class SearchResults extends AppCompatActivity {
 
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_profile:
+                Intent profileIntent = new Intent(this, ProfileActivity.class);
+                this.getApplicationContext().startActivity(profileIntent);
+                return true;
+
+            case R.id.action_logout:
+                LogoutDialog logoutDialog = new LogoutDialog(this);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {

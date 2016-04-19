@@ -1,5 +1,7 @@
 package com.sparta.imenu_client.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -19,7 +21,7 @@ import com.sparta.imenu_client.service.SignUpService;
 
 public class LoginActivity extends AppCompatActivity {
     final String TAG ="LoginActivity";
-    boolean usernameTextFlag;
+    boolean emailTextFlag;
     boolean passwordTextFlag;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -27,17 +29,23 @@ public class LoginActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
     public EditText passwordText;
-    public EditText usernameText;
+    public EditText emailText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences currentUserPref = getApplicationContext().getSharedPreferences("CurrentUser",MODE_PRIVATE);
+        if(currentUserPref.getString("email",null)!=null){
+            Intent homeIntent = new Intent(this, HomeActivity.class);
+            getApplicationContext().startActivity(homeIntent);
+            finish();
+        }
         setContentView(R.layout.activity_login);
-        usernameTextFlag = false;
+        emailTextFlag = false;
         passwordTextFlag = false;
         passwordText = (EditText) findViewById(R.id.passwordLoginEditText);
-        usernameText = (EditText) findViewById(R.id.usernameLoginEditText);
-        usernameText.addTextChangedListener(new TextWatcher() {
+        emailText = (EditText) findViewById(R.id.emailLoginEditText);
+        emailText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -69,15 +77,15 @@ public class LoginActivity extends AppCompatActivity {
         RadioGroup radioSexGroup = (RadioGroup) findViewById(R.id.radioGenderGroup);
         RadioButton gender = (RadioButton) findViewById(radioSexGroup.getCheckedRadioButtonId());
         User newUser = new User(fullName.getText().toString(),
-                                email.getText().toString(),
-                                password.getText().toString(),
-                                gender.getText().toString());
-        newUser.getPreferences().add("beef");
+                email.getText().toString(),
+                password.getText().toString(),
+                gender.getText().toString());
+        //newUser.getPreferences().add("beef");
         SignUpService signUpService=new SignUpService(this,newUser);
         signUpService.execute();
     }
     public String getUsername(){
-       return usernameText.getText().toString() ;
+        return emailText.getText().toString() ;
     }
     public String getPassword(){
         return passwordText.getText().toString();

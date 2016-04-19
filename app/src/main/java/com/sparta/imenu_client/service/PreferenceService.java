@@ -1,5 +1,7 @@
 package com.sparta.imenu_client.service;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -19,17 +21,18 @@ import java.util.List;
  */
 
 public class PreferenceService extends AsyncTask<Void, Void, Boolean> {
-    private String username;
+    private String email;
     private String preference;
     private String operation;
     private boolean result;
     private ProfileActivity context;
 
-    public PreferenceService(String username, String preference, String operation,ProfileActivity context){
-        this.username = username;
+    public PreferenceService(String preference, String operation,ProfileActivity context){
         this.preference = preference;
         this.operation=operation;
         this.context=context;
+        SharedPreferences currentUserPref = context.getApplicationContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
+        email = currentUserPref.getString("email",null);
     }
 
     @Override
@@ -38,7 +41,7 @@ public class PreferenceService extends AsyncTask<Void, Void, Boolean> {
         RestTemplate restTemplate = new RestTemplate();
         List<String> sentData = new ArrayList<String>();
         sentData.add(preference);
-        sentData.add(username);
+        sentData.add(email);
         Log.i("preference service", sentData.get(0));
         Log.i("preference service",sentData.get(1));
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -51,9 +54,9 @@ public class PreferenceService extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean result) {
         if(result)
-            Toast.makeText(context,"Preference "+operation+"ed",Toast.LENGTH_LONG);
+            Toast.makeText(context,"Preference "+operation+"ed",Toast.LENGTH_LONG).show();
         else
-            Toast.makeText(context,"Preference "+operation+"ed",Toast.LENGTH_LONG);
+            Toast.makeText(context,"Preference "+operation+"ed",Toast.LENGTH_LONG).show();
     }
 
     public boolean getResult() {

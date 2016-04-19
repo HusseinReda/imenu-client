@@ -1,5 +1,7 @@
 package com.sparta.imenu_client.service;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.imenu_client.R;
@@ -20,7 +21,6 @@ import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,7 +29,7 @@ import java.util.List;
 
 public class GetRecommendedService extends AsyncTask<Void, Void, List<Item>> {
     HomeActivity context;
-    String username;
+    String email;
     RecyclerView recyclerView;
     Exception error;
     ProgressBar progressBar;
@@ -38,13 +38,14 @@ public class GetRecommendedService extends AsyncTask<Void, Void, List<Item>> {
     public GetRecommendedService() {
     }
 
-    public GetRecommendedService(HomeActivity context, String username,
-                                 RecyclerView recyclerView,ProgressBar progressBar,SwipeRefreshLayout swipeRefreshLayout) {
+    public GetRecommendedService(HomeActivity context, RecyclerView recyclerView,
+                                 ProgressBar progressBar,SwipeRefreshLayout swipeRefreshLayout) {
         this.context = context;
-        this.username = username;
         this.recyclerView=recyclerView;
         this.progressBar = progressBar;
         this.swipeRefreshLayout=swipeRefreshLayout;
+        SharedPreferences currentUserPref = context.getApplicationContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
+        email = currentUserPref.getString("email",null);
     }
     @Override
     protected void onPreExecute() {
@@ -54,8 +55,8 @@ public class GetRecommendedService extends AsyncTask<Void, Void, List<Item>> {
     @Override
     protected List<Item> doInBackground(Void... params) {
         Log.i("recommended Act", "service started");
-//        Log.i("recommended Act", username);
-        final String url = context.getString(R.string.url)+"user/recommend?email="+username;
+//        Log.i("recommended Act", email);
+        final String url = context.getString(R.string.url)+"user/recommend?email="+ email;
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());

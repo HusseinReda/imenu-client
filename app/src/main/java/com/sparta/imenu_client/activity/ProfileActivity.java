@@ -1,6 +1,8 @@
 package com.sparta.imenu_client.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,14 +15,15 @@ import android.widget.EditText;
 
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.service.PreferenceService;
+import com.sparta.imenu_client.userInterface.LogoutDialog;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    String username;
+    String email;
     AppCompatActivity context;
     EditText preference;
-    public ProfileActivity(String userName, AppCompatActivity context) {
-        this.username = userName;
+    public ProfileActivity(String email, AppCompatActivity context) {
+        this.email = email;
         this.context=context;
     }
 
@@ -34,8 +37,8 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.profile_toolbar);
         setSupportActionBar(toolbar);
         preference = (EditText)findViewById(R.id.preference_editText);
-        Intent myIntent = getIntent();
-        username=myIntent.getStringExtra("username");
+        SharedPreferences currentUserPref = getApplicationContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
+        email = currentUserPref.getString("email", null);
     }
 
     @Override
@@ -51,9 +54,14 @@ public class ProfileActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_profile:
-                Intent profileIntent = new Intent(context, ProfileActivity.class);
-                context.getApplicationContext().startActivity(profileIntent);
+                Intent profileIntent = new Intent(this, ProfileActivity.class);
+                this.getApplicationContext().startActivity(profileIntent);
                 return true;
+
+            case R.id.action_logout:
+                LogoutDialog logoutDialog = new LogoutDialog(this);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -62,13 +70,13 @@ public class ProfileActivity extends AppCompatActivity {
     public void addPreferenceHandler(View view) {
         Log.i("profile page","Add button clicked");
         String preference_input = preference.getText().toString();
-        PreferenceService preferenceService=new PreferenceService(username,preference_input,"add",this);
+        PreferenceService preferenceService=new PreferenceService(preference_input,"add",this);
         preferenceService.execute();
     }
     public void removePreferenceHandler(View view) {
         Log.i("profile page","remove button clicked");
         String preference_input = preference.getText().toString();
-        PreferenceService preferenceService=new PreferenceService(username,preference_input,"remove",this);
+        PreferenceService preferenceService=new PreferenceService(preference_input,"remove",this);
         preferenceService.execute();
     }
 

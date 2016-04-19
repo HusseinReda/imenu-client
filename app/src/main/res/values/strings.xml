@@ -27,4 +27,7 @@
     <string name="restaurants">Restaurants</string>
     <string name="recommended_for_you">You may like :</string>
     <string name="title_activity_profile">Profile</string>
+    <string name="dialog_logout">Are you sure you want to log out?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
 </resources>
