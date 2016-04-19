@@ -67,7 +67,10 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         itemViewHolder.itemPrice.setText(Double.toString(items.get(i).getPrice()));
         itemViewHolder.itemRestaurantName.setText(items.get(i).getRestaurantName());
 //        itemViewHolder.itemImage.setImageURI(Uri.parse(items.get(i).getPicture()));
-        Picasso.with(context).load(items.get(i).getPicture()).into(itemViewHolder.itemImage);
+        Picasso.with(context).load(items.get(i).getPicture())
+                .error(R.drawable.no_image)
+                .placeholder(R.drawable.loading_image)
+                .into(itemViewHolder.itemImage);
 //        itemViewHolder.itemImage.setImageResource(R.drawable.no_image);
     }
 

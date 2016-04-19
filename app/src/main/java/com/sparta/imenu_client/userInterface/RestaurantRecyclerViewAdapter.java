@@ -61,7 +61,10 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
         restaurantViewHolder.restaurantCategory.setText(restaurants.get(i).getCategory());
 //        restaurantViewHolder.restaurantImage.setImageURI(Uri.parse("https://www.ginesisnatural.com/images/no_image.jpg"));
 //        restaurantViewHolder.restaurantImage.setImageResource(R.drawable.no_image);
-        Picasso.with(context).load(restaurants.get(i).getPicture()).into(restaurantViewHolder.restaurantImage);
+        Picasso.with(context).load(restaurants.get(i).getPicture())
+                .error(R.drawable.no_image)
+                .placeholder(R.drawable.loading_image)
+                .into(restaurantViewHolder.restaurantImage);
     }
 
     @Override
