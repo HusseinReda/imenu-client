@@ -33,21 +33,20 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         Restaurant restaurant= new Restaurant("KFC","Fast food","KFC Cairo",
-                "https://m...content-available-to-author-only...r.com/sql/559399/kfc-holdings-squarelogo-1428385037396.png",
+                "https://marketing.otlob.com/images/nl/otlob/kfcL.png",
                 null,null);
         Menu menu = new Menu();
-        String names[] = {"Mighty Bucket Meal","Mighty Popcorn Meal","My Meal","Super Snack Meal","Super kSnack Meal",
-                "Dinner Box","Dinnern Box","Extra Chicken Piece"};
-        String urls[]={"https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62574_1453380791_ma.png",
-                "https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62579_1453380790_ma.png",
-                "https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62580_1453387656_ma.jpg",
-                "https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62587_1453387656_ma.jpg",
-                "https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62588_1442482035_ma.jpg",
-                "https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62612_1448372552_ma.jpg",
-                "https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62613_1448372552_ma.jpg",
-                "https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62614_1453381076_ma.jpg",
-        };
-        double prices[] ={48.18,50.00,10.45,23.64,18.64,31.82,39.54,9.54};
+        String names[] = {"Mighty Bucket Meal","Mighty Popcorn Meal","My Meal","Super Snack Meal","Super Snack Meal",
+                "Dinner Box","Dinner Box","Extra Chicken Piece"};
+        String urls[]={"https://assets.otlob.com/dynamic/images/products/62/62574_1453380791_ma.png",
+                "https://assets.otlob.com/dynamic/images/products/62/62579_1453380790_ma.png",
+                "https://assets.otlob.com/dynamic/images/products/62/62580_1453387656_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/62/62587_1453387656_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/62/62588_1442482035_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/62/62612_1448372552_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/62/62613_1448372552_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/62/62614_1453381076_ma.jpg",
+        };        double prices[] ={48.18,50.00,10.45,23.64,18.64,31.82,39.54,9.54};
         String descriptions[]={"2 pieces chicken + 3 pieces chicken strips + small French fries + small coleslaw salad + bun + garlic mayonnaise sauce + dynamite sauce + soft drink",
                 "2 pieces chicken + 2 pieces chicken strips + 10 popcorn + small French fries + small coleslaw salad + bun + garlic mayonnaise sauce + dynamite sauce + soft drink",
                 "one chicken piece, served with small French fries + 2 bun bread",
@@ -73,10 +72,11 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
         Section section = new Section(items);
         menu.addSection(section);
         String names2[] = {" Crispy Strips Light Meal","Crispy Strips Meal","Crispy Strips Meal","Crispy Strips Piece"};
-        String urls2[] = {"https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62863_1453381191_ma.png",
-                "https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62864_1453381190_ma.png",
-                "https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62865_1453381352_ma.png",
-                "https://a...content-available-to-author-only...b.com/dynamic/images/products/62/62866_1453383366_ma.png"};
+        String urls2[] = {"https://assets.otlob.com/dynamic/images/products/62/62863_1453381191_ma.png",
+                "https://assets.otlob.com/dynamic/images/products/62/62864_1453381190_ma.png",
+                "https://assets.otlob.com/dynamic/images/products/62/62865_1453381352_ma.png",
+                "https://assets.otlob.com/dynamic/images/products/62/62866_1453383366_ma.png"};
+
         double prices2[] ={18.64,31.82,39.54,6.82};
         String descriptions2 []={"3 pieces crispy strips + small French fries + bun",
                 "5 pieces crispy strips + small French fries + coleslaw salad + bun",
@@ -91,7 +91,53 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
         Section section2 = new Section(items2);
         menu.addSection(section2);
         restaurant.addMenu(menu);
+
+        Restaurant restaurant_mac= new Restaurant("MAC","Fast food","MAC Cairo",
+                "https://marketing.otlob.com/images/nl/otlob/mcdlogoL.png",
+                null,null);
+        Menu menu_mac = new Menu();
+        String names_mac[] = {"Big Mac","Big Tasty","Fillet-O-Fish Sandwich","Quarter Pounder with Cheese","Double Cheeseburger Sandwich",
+                "Chicken MACDO","Cheeseburger Sandwich","McArabia Kofta Sandwich"};
+        String urls_mac[]={"https://assets.otlob.com/dynamic/images/products/60/60758_1442409163_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/60/60759_1442409162_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/60/60718_1442408805_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/60/60641_1442408011_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/60/60655_1442408008_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/97/97923_1442410681_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/97/97924_1442410680_ma.jpg",
+                "https://assets.otlob.com/dynamic/images/products/60/60642_1442408011_ma.jpg",
+        };
+        double prices_mac[] ={20.90,31.37,12.72,22.72,18.64,31.82,39.54,9.54};
+        String descriptions_mac[]={"100% grilled beef 2 patties, special Big Mac™ sauce, cheese, crunchy lettuce, fresh onions, pickle slices, sesame seed buns",
+                "Pure grilled beef patty wrapped in 3 layers of Emmental cheese covered with a special tasty sauce, crunchy lettuce, fresh tomatoes & onions all wrapped in a sesame bun",
+                "Pure white fish breaded patty covered with tasty tartar sauce and a layer of cheese - all wrapped in a fresh bun",
+                "Pure grilled beef patties between 2 layers of cheese covered with ketchup, mustard, fresh onions & pickles - all wrapped in a sesame seed bun",
+                "Two slices of golden American cheese with two 100% all-beef patties, pickles, onions, ketchup and mustard on a toasted bun",
+                "100% white meat grilled chicken breast filet covered with crunchy lettuce and tasty mayonnaise - all wrapped in a fresh bun",
+                "It doesn`t get better than this.. a grilled beef patty with ketchup, mustard, pickles, onions and a cheese slice in a bun.",
+                "Grilled kofta 2 patties covered with tehina sauce, fresh lettuce, tomatoes & onions all wrapped in savory Arabic bread",
+        };
+        ArrayList<String> keywords_mac[] = new ArrayList[]{new ArrayList<String>(Arrays.asList("beef", "cheese", "lettuce", "pickles", "onions", "sauce", "sesame", "MAC", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("juicy","beef","emmental","cheese","tomato","lettuce","onions","sauce", "MAC", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("fish","filet","tartar","cheese", "MAC", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("cheese","ketchup","mustard","pickles","onions", "MAC", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("ketchup","mustard","onions","pickles","beef", "MAC", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("chicken","lettuce","mayo","fresh", "MAC", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("ketchup","onions","pickles","Cheese","beef", "MAC", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("chicken","lettuce","tomatoes","onions","garlic","Arabic bread","bun","bread", "MAC", "macdonalds"))
+        };
+        ArrayList<Item> items_mac = new ArrayList<Item>();
+        for (int i=0;i<names.length;i++) {
+            items.add(new Item(names[i],"MAC", "Burger", prices[i], descriptions[i], keywords[i], urls[i]));
+        }
+        Section section_mac = new Section(items);
+        menu_mac.addSection(section_mac);
+        restaurant_mac.addMenu(menu_mac);
+
+
+        String response1 = restTemplate.postForObject(context.getString(R.string.url)+"restaurant/add",restaurant_mac,String.class);
         String response = restTemplate.postForObject(context.getString(R.string.url)+"restaurant/add",restaurant,String.class);
+
         return response;
     }
 }
