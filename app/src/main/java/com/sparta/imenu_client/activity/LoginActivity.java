@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences currentUserPref = getApplicationContext().getSharedPreferences("CurrentUser",MODE_PRIVATE);
         if(currentUserPref.getString("email",null)!=null){
             Intent homeIntent = new Intent(this, HomeActivity.class);
+            homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getApplicationContext().startActivity(homeIntent);
             finish();
         }

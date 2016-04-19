@@ -55,6 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_profile:
                 Intent profileIntent = new Intent(this, ProfileActivity.class);
+                profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 this.getApplicationContext().startActivity(profileIntent);
                 return true;
 
