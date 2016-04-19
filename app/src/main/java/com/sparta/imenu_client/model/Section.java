@@ -22,7 +22,7 @@ public class Section {
     public Section() {
     }
 
-    public Section(List<Item> items, int menuId) {
+    public Section(List<Item> items) {
 
         this.items = items;
     }
