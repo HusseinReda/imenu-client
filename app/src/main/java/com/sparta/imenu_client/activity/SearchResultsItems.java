@@ -33,10 +33,6 @@ public class SearchResultsItems extends Fragment implements SwipeRefreshLayout.O
         // Required empty public constructor
     }
 
-    public SearchResultsItems(String query) {
-        this.query = query;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +42,9 @@ public class SearchResultsItems extends Fragment implements SwipeRefreshLayout.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Bundle extras = getArguments();
+        query=extras.getString("query");
+
         View view= inflater.inflate(R.layout.fragment_search_results_items,container,false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.item_search_recycler_view);

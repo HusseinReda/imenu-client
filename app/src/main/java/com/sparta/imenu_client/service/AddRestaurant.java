@@ -117,20 +117,20 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
                 "It doesn`t get better than this.. a grilled beef patty with ketchup, mustard, pickles, onions and a cheese slice in a bun.",
                 "Grilled kofta 2 patties covered with tehina sauce, fresh lettuce, tomatoes & onions all wrapped in savory Arabic bread",
         };
-        ArrayList<String> keywords_mac[] = new ArrayList[]{new ArrayList<String>(Arrays.asList("beef", "cheese", "lettuce", "pickles", "onions", "sauce", "sesame", "MAC", "macdonalds")),
-                new ArrayList<String>(Arrays.asList("juicy","beef","emmental","cheese","tomato","lettuce","onions","sauce", "MAC", "macdonalds")),
-                new ArrayList<String>(Arrays.asList("fish","filet","tartar","cheese", "MAC", "macdonalds")),
-                new ArrayList<String>(Arrays.asList("cheese","ketchup","mustard","pickles","onions", "MAC", "macdonalds")),
-                new ArrayList<String>(Arrays.asList("ketchup","mustard","onions","pickles","beef", "MAC", "macdonalds")),
-                new ArrayList<String>(Arrays.asList("chicken","lettuce","mayo","fresh", "MAC", "macdonalds")),
-                new ArrayList<String>(Arrays.asList("ketchup","onions","pickles","Cheese","beef", "MAC", "macdonalds")),
-                new ArrayList<String>(Arrays.asList("chicken","lettuce","tomatoes","onions","garlic","Arabic bread","bun","bread", "MAC", "macdonalds"))
+        ArrayList<String> keywords_mac[] = new ArrayList[]{new ArrayList<String>(Arrays.asList("Bread","Beef burger","beef","burger", "Cheese", "Lettuce", "Pickles", "Onions", "Our special sauce","sauce", "sesame", "MAC", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("Bread","Beef burger","beef","juicy","beef","emmental","cheese","Emmental cheese","Tomato","Lettuce","Onions","sauce", "mac", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("Bread","Fillet fish","fish","fillet","Tartar sauce","tartar","Cheese", "mac", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("Bread","Beef burger","beef","Cheese","Ketchup","Mustard","Pickles","Onions", "mac", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("Bread","Beef burger","beef","ketchup","mustard","onions","pickles","beef", "mac", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("Bread","Chicken","Lettuce","Mayo","fresh", "MAC", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("Bread","Beef burger","beef","Cheese","Ketchup","Onions","Pickles","beef", "mac", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("Arabic bread","Beef kofta","beef","Kofta","Lettuce","Tomatoes","Onions","Garlic","bun","bread", "mac", "macdonalds"))
         };
         ArrayList<Item> items_mac = new ArrayList<Item>();
         for (int i=0;i<names.length;i++) {
-            items.add(new Item(names[i],"MAC", "Burger", prices[i], descriptions[i], keywords[i], urls[i]));
+            items_mac.add(new Item(names_mac[i],"MAC", "Burger", prices_mac[i], descriptions_mac[i], keywords_mac[i], urls_mac[i]));
         }
-        Section section_mac = new Section(items);
+        Section section_mac = new Section(items_mac);
         menu_mac.addSection(section_mac);
         restaurant_mac.addMenu(menu_mac);
 

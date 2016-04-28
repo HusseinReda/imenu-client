@@ -1,12 +1,13 @@
 package com.sparta.imenu_client.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by hamed on 3/19/16.
  */
-public class Item {
-    private int id;
+public class Item implements Serializable{
+    private long id;
     private String name;
     private String restaurantName;
     private String type;
@@ -67,7 +68,7 @@ public class Item {
         return rating;
     }
 
-    public int getId(){
+    public long getId(){
         return id;
     }
 

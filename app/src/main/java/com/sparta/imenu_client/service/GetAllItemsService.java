@@ -52,7 +52,7 @@ public class GetAllItemsService extends AsyncTask<Void, Void, List<Item>> {
     }
     @Override
     protected List<Item> doInBackground(Void... params) {
-        Log.i("getAll Act", "service started");
+        Log.i("getAll service", "service started");
 //        Log.i("recommended Act", email);
         final String url = context.getString(R.string.url)+"item/getAll";
         RestTemplate restTemplate = new RestTemplate();
@@ -64,7 +64,7 @@ public class GetAllItemsService extends AsyncTask<Void, Void, List<Item>> {
         }
         catch (Exception e){
             error=e;
-            Log.i("recommend service","error caught");
+            Log.i("getAll service","error caught");
             return null;
         }
     }

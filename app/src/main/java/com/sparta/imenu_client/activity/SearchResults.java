@@ -27,6 +27,8 @@ public class SearchResults extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private String query;
+    private SearchResultsItems searchResultsItems;
+    private SearchResultsRestaurants searchResultsRestaurants;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,9 +52,17 @@ public class SearchResults extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         handleIntent(getIntent());
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        Log.i("search results","el query: "+query+" ##");
-        adapter.addFragment(new SearchResultsItems(query), "Food");
-        adapter.addFragment(new SearchResultsRestaurants(query), "Restaurant");
+        Log.i("search results", "el query: " + query + " ##");
+
+        Bundle bundle = new Bundle();
+        bundle.putString("query",query);
+        searchResultsItems=new SearchResultsItems();
+        searchResultsRestaurants=new SearchResultsRestaurants();
+        searchResultsItems.setArguments(bundle);
+        searchResultsRestaurants.setArguments(bundle);
+
+        adapter.addFragment(searchResultsItems, "Food");
+        adapter.addFragment(searchResultsRestaurants, "Restaurant");
         viewPager.setAdapter(adapter);
     }
 
@@ -93,6 +103,7 @@ public class SearchResults extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
+        setIntent(intent);
         handleIntent(intent);
     }
 

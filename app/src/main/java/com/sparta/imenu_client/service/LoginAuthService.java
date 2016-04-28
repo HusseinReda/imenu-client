@@ -1,5 +1,6 @@
 package com.sparta.imenu_client.service;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -68,7 +69,7 @@ public class LoginAuthService extends AsyncTask<Void, Void, Boolean> {
                 Intent homeIntent = new Intent(context, HomeActivity.class);
                 homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.getApplicationContext().startActivity(homeIntent);
-                context.finish();
+                ((Activity)context).finish();
             } else {
                 Toast.makeText(context, "Incorrect email or password", Toast.LENGTH_LONG).show();
                 Intent loginIntent = new Intent(context, LoginActivity.class);

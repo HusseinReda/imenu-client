@@ -35,10 +35,6 @@ public class SearchResultsRestaurants extends Fragment implements SwipeRefreshLa
     }
 
 
-    public SearchResultsRestaurants(String query) {
-        this.query = query;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +43,10 @@ public class SearchResultsRestaurants extends Fragment implements SwipeRefreshLa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Bundle extras = getArguments();
+        query=extras.getString("query");
+
         View view= inflater.inflate(R.layout.fragment_search_results_restaurants,container,false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.restaurant_search_recycler_view);

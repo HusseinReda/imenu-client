@@ -81,7 +81,7 @@ public class SearchRestaurantService extends AsyncTask<Void, Void, List<Restaura
             progressBar.setVisibility(View.GONE);
             // recyclerView.getAdapter().notifyDataSetChanged();
             if (result.size() != 0) {
-                //context.updateRecycleView(Arrays.asList(items));
+                //callingActivity.updateRecycleView(Arrays.asList(items));
                 //            recyclerView.getAdapter().notifyDataSetChanged();
                 Log.i("search rest service", String.valueOf(result.size()) + " 2");
                 List<Restaurant> restaurants = new ArrayList<Restaurant>();

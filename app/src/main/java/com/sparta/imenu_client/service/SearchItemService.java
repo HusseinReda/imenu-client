@@ -81,7 +81,7 @@ public class SearchItemService extends AsyncTask<Void, Void, List<Item>> {
             progressBar.setVisibility(View.GONE);
             // recyclerView.getAdapter().notifyDataSetChanged();
             if (items.size() != 0) {
-                //context.updateRecycleView(Arrays.asList(items));
+                //callingActivity.updateRecycleView(Arrays.asList(items));
                 //            recyclerView.getAdapter().notifyDataSetChanged();
                 Log.i("search item service", String.valueOf(items.size()) + " 2");
                 List<Item> itemsss = new ArrayList<Item>();

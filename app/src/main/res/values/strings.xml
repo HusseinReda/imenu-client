@@ -30,4 +30,10 @@
     <string name="dialog_logout">Are you sure you want to log out?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_item">ItemActivity</string>
+    <string name="title_activity_test">Test</string>
+    <string name="rate_it">Rate it ?</string>
+    <string name="rate_it_dialog_button">Rate it !</string>
+    <string name="rating_dialog_title">Let\'s know your opinion</string>
+    <string name="ingredients">Ingredients</string>
 </resources>
