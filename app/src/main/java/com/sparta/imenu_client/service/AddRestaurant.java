@@ -69,7 +69,7 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
         for (int i=0;i<names.length;i++) {
             items.add(new Item(names[i],"KFC", "chicken", prices[i], descriptions[i], keywords[i], urls[i]));
         }
-        Section section = new Section(items);
+        Section section = new Section("Chicken",items);
         menu.addSection(section);
         String names2[] = {" Crispy Strips Light Meal","Crispy Strips Meal","Crispy Strips Meal","Crispy Strips Piece"};
         String urls2[] = {"https://assets.otlob.com/dynamic/images/products/62/62863_1453381191_ma.png",
@@ -88,7 +88,7 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
                 null,
         };
         ArrayList<Item> items2 = new ArrayList<Item>();
-        Section section2 = new Section(items2);
+        Section section2 = new Section("Crispy",items2);
         menu.addSection(section2);
         restaurant.addMenu(menu);
 
@@ -130,7 +130,7 @@ public class AddRestaurant extends AsyncTask<Void,Void,String> {
         for (int i=0;i<names.length;i++) {
             items_mac.add(new Item(names_mac[i],"MAC", "Burger", prices_mac[i], descriptions_mac[i], keywords_mac[i], urls_mac[i]));
         }
-        Section section_mac = new Section(items_mac);
+        Section section_mac = new Section("Sandwiches",items_mac);
         menu_mac.addSection(section_mac);
         restaurant_mac.addMenu(menu_mac);
 

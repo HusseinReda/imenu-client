@@ -1,8 +1,10 @@
 package com.sparta.imenu_client.userInterface;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sparta.imenu_client.R;
-import com.sparta.imenu_client.model.Item;
+import com.sparta.imenu_client.activity.RestaurantActivity;
 import com.sparta.imenu_client.model.Restaurant;
 import com.squareup.picasso.Picasso;
 
@@ -22,25 +24,38 @@ import java.util.List;
 
 public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<RestaurantRecyclerViewAdapter.RestaurantViewHolder> {
 
+    List<Restaurant> restaurants;
+    Context context;
+
     public static class RestaurantViewHolder extends RecyclerView.ViewHolder{
         CardView cardView;
         ImageView restaurantImage;
         TextView restaurantName;
         TextView restaurantDescription;
         TextView restaurantCategory;
+        public Restaurant currentRestaurant;
 
-        RestaurantViewHolder(View itemView) {
+        RestaurantViewHolder(final View itemView) {
             super(itemView);
+
             cardView=(CardView)itemView.findViewById(R.id.card_view);
-            restaurantImage =(ImageView)itemView.findViewById(R.id.restaurant_image);
-            restaurantName =(TextView)itemView.findViewById(R.id.restaurant_name);
-            restaurantDescription =(TextView)itemView.findViewById(R.id.restaurant_description);
-            restaurantCategory =(TextView)itemView.findViewById(R.id.restaurant_category);
+            restaurantImage =(ImageView)itemView.findViewById(R.id.cardview_restaurant_image);
+            restaurantName =(TextView)itemView.findViewById(R.id.cardview_restaurant_name);
+            restaurantDescription =(TextView)itemView.findViewById(R.id.cardview_restaurant_description);
+            restaurantCategory =(TextView)itemView.findViewById(R.id.cardview_restaurant_category);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent restaurantActivity = new Intent(itemView.getContext(), RestaurantActivity.class);
+                    restaurantActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Log.i("rest adptr", "name=" + currentRestaurant.getName());
+                    restaurantActivity.putExtra("restaurant", currentRestaurant);
+                    itemView.getContext().startActivity(restaurantActivity);
+                }
+            });
         }
     }
-
-    List<Restaurant> restaurants;
-    Context context;
 
     public RestaurantRecyclerViewAdapter(List<Restaurant> items,Context context) {
         this.restaurants = items;
@@ -56,6 +71,10 @@ public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<Restaura
 
     @Override
     public void onBindViewHolder(RestaurantViewHolder restaurantViewHolder, int i) {
+
+        Restaurant curRestaurant = restaurants.get(i);
+        restaurantViewHolder.currentRestaurant=curRestaurant;
+
         restaurantViewHolder.restaurantName.setText(restaurants.get(i).getName());
         restaurantViewHolder.restaurantDescription.setText(restaurants.get(i).getDescription());
         restaurantViewHolder.restaurantCategory.setText(restaurants.get(i).getCategory());

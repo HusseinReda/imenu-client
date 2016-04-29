@@ -67,15 +67,17 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_layout,parent,false);
         ItemViewHolder itemViewHolder= new ItemViewHolder(view);
         return itemViewHolder;
     }
 
     @Override
     public void onBindViewHolder(ItemViewHolder itemViewHolder, int i) {
+
         Item currentItem=items.get(i);
         itemViewHolder.currentItem=currentItem;
+
         itemViewHolder.itemId.setText(Long.toString(items.get(i).getId()));
         itemViewHolder.itemName.setText(items.get(i).getName());
         itemViewHolder.itemDescription.setText(items.get(i).getDescription());

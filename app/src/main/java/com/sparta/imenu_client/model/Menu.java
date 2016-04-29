@@ -1,12 +1,17 @@
 package com.sparta.imenu_client.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by hamed on 3/19/16.
  */
-public class Menu {
-    private int id;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class Menu implements Serializable{
+    private long id;
     private ArrayList<Section> sections;
 
 

@@ -49,7 +49,6 @@ public class GetRecommendedService extends AsyncTask<Void, Void, List<Item>> {
     }
     @Override
     protected void onPreExecute() {
-
         context.setProgressBarIndeterminateVisibility(true);
     }
     @Override

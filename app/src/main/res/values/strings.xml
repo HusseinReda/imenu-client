@@ -36,4 +36,8 @@
     <string name="rate_it_dialog_button">Rate it !</string>
     <string name="rating_dialog_title">Let\'s know your opinion</string>
     <string name="ingredients">Ingredients</string>
+    <string name="title_activity_item2">ItemActivity2</string>
+    <string name="title_activity_restaurant">RestaurantActivity</string>
+    <string name="restaurant_contacts"><u>Contacts ?</u></string>
+    <string name="restaurant_contacts_dialog_title">Contacts</string>
 </resources>

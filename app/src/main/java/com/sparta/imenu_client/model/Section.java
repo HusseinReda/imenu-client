@@ -1,16 +1,21 @@
 package com.sparta.imenu_client.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by hamed on 3/19/16.
  */
-public class Section {
+
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class Section implements Serializable{
     private int id;
     private List<Item> items;
-
+    private String name;
     public int getId(){
         return id;
     }
@@ -23,9 +28,14 @@ public class Section {
     }
 
     public Section(List<Item> items) {
-
         this.items = items;
     }
+
+    public Section(String name, List<Item> items) {
+        this.name = name;
+        this.items = items;
+    }
+
     public void addItem (Item item){
         items.add(item);
         // call the service
@@ -39,5 +49,9 @@ public class Section {
         }
         items= temp;
         // call the service
+    }
+
+    public String getName() {
+        return name;
     }
 }

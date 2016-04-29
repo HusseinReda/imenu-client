@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.userInterface.LogoutDialog;
@@ -53,6 +54,11 @@ public class SearchResults extends AppCompatActivity {
         handleIntent(getIntent());
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         Log.i("search results", "el query: " + query + " ##");
+
+        /////
+        TextView querySearchedFor = (TextView)findViewById(R.id.query_searched_for);
+        querySearchedFor.setText("You have searched for: "+query);
+        /////
 
         Bundle bundle = new Bundle();
         bundle.putString("query",query);

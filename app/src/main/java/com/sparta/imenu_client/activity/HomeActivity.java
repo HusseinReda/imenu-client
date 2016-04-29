@@ -98,7 +98,7 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
 //        }
         ///
 
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar = (ProgressBar) findViewById(R.id.home_progress_bar);
         progressBar.setVisibility(View.VISIBLE);
 
         //recycler view
