@@ -19,11 +19,11 @@ public class Item implements Serializable{
     private float rating;
     private Section section;
 
-    public Section getSection() {
-        return section;
+    public Item() {
     }
 
-    public Item() {
+    public Section getSection() {
+        return section;
     }
 
     public Item(String name, String restaurantName, String type, double price, String description, ArrayList<String> keywords, String picture) {
@@ -80,6 +80,49 @@ public class Item implements Serializable{
         reviews.add( review);
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setKeywords(ArrayList<String> keywords) {
+        this.keywords = keywords;
+    }
+
+    public void setReviews(ArrayList<ItemReview> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
     @Override
     public String toString() {
         return "Item{" +
@@ -87,6 +130,7 @@ public class Item implements Serializable{
                 ", restaurantName='" + restaurantName + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
+                ", rating='"+rating+'\''+
                 '}';
     }
 }

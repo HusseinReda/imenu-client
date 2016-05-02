@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.model.Contact;
 import com.sparta.imenu_client.model.Restaurant;
+import com.sparta.imenu_client.service.AddRateService;
 import com.sparta.imenu_client.userInterface.LogoutDialog;
 import com.squareup.picasso.Picasso;
 
@@ -194,14 +196,17 @@ public class RestaurantActivity extends AppCompatActivity{
         ratingDialog.setTitle(R.string.rating_dialog_title);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        View ratingBar = inflater.inflate(R.layout.rating_dialog,null);
-
-        ratingDialog.setView(ratingBar);
+//        View ratingBar = inflater.inflate(R.layout.rating_dialog, null);
+        final View ratingBarlayout = inflater.inflate(R.layout.rating_dialog, null);
+        ratingDialog.setView(ratingBarlayout);
         ratingDialog.setPositiveButton(R.string.rate_it_dialog_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //AddRateService addRateService= new AddRateService(ItemActivity.this,,rating.getRating(),false);
-                Toast.makeText(RestaurantActivity.this, "Lesa el service mat3amaletsh :D", Toast.LENGTH_SHORT).show();
+                RatingBar ratingBar = (RatingBar)ratingBarlayout.findViewById(R.id.dialog_ratingbar);
+                restaurant.setRating(ratingBar.getRating());
+                AddRateService addRateService= new AddRateService(RestaurantActivity.this,null,restaurant,false);
+                addRateService.execute();
+//                Toast.makeText(RestaurantActivity.this, "Lesa el service mat3amaletsh :D, tab kamellha yakhoya xD", Toast.LENGTH_SHORT).show();
             }
         });
         AlertDialog alertDialog = ratingDialog.create();

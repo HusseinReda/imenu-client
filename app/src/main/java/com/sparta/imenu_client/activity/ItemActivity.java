@@ -163,7 +163,8 @@ public class ItemActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 RatingBar ratingBar = (RatingBar)ratingBarlayout.findViewById(R.id.dialog_ratingbar);
                 Log.i("item act", String.valueOf(ratingBar.getRating()));
-                AddRateService addRateService= new AddRateService(ItemActivity.this,item.getId(),ratingBar.getRating(),true);
+                item.setRating(ratingBar.getRating());
+                AddRateService addRateService= new AddRateService(ItemActivity.this,item, null,true);
                 addRateService.execute();
                 //Toast.makeText(ItemActivity.this, "Lesa el service mat3amaletsh :D", Toast.LENGTH_SHORT).show();
             }

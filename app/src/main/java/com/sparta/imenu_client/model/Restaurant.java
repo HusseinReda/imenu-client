@@ -62,6 +62,42 @@ public class Restaurant implements Serializable {
         return id;
     }
 
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public void setReviews(ArrayList<RestaurantReview> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Restaurant() {
     }
 
