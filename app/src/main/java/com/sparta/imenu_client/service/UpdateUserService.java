@@ -37,6 +37,7 @@ public class UpdateUserService extends AsyncTask<Void, Void, Boolean> {
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
         Log.i("update service", "before submit : " + newUser.getHealthIssues().size());
+        Log.i("update service", "before submit : " + newUser.getRestrictions().size());
         Log.i("update service", "before submit : " + newUser.getPassword());
         boolean result = restTemplate.postForObject(url,newUser,Boolean.class);
         return result;

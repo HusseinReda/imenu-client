@@ -39,6 +39,8 @@ public class ItemActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private Item item;
     TextView ingredientsData;
+    ImageView itemIngredientsLayoutImg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +48,12 @@ public class ItemActivity extends AppCompatActivity {
         Intent myIntent = getIntent();
         item = (Item) myIntent.getSerializableExtra("item");
 
+        itemIngredientsLayoutImg = (ImageView) findViewById(R.id.item_ingredients_layout_img);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.item_toolbar);
         setSupportActionBar(toolbar);
 
         setUpSearch();
-
-
 
         final Button btn1 = (Button) findViewById(R.id.add_item_rating_button);
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -140,10 +142,12 @@ public class ItemActivity extends AppCompatActivity {
         if(ingredientsData.isShown()){
             IMenuAnimation.slide_up(this, ingredientsData);
             ingredientsData.setVisibility(View.GONE);
+            itemIngredientsLayoutImg.setImageResource(R.drawable.plus_icon);
         }
         else{
             ingredientsData.setVisibility(View.VISIBLE);
             IMenuAnimation.slide_down(this, ingredientsData);
+            itemIngredientsLayoutImg.setImageResource(R.drawable.minus_icon);
         }
     }
 

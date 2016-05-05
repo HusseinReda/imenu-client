@@ -43,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/plus_icon"
+            android:id="@+id/item_ingredients_layout_img"
             android:maxWidth="10dp"
             android:maxHeight="10dp"
             android:layout_marginTop="3dp"

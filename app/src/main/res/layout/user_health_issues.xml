@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/plus_icon"
+            android:id="@+id/user_health_issues_start_img"
             android:maxWidth="10dp"
             android:maxHeight="10dp" />
         <TextView

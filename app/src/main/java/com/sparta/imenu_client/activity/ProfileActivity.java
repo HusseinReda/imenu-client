@@ -104,6 +104,9 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText userNewPassword2;
     private Button userUpdatePasswordButton;
     private Button removeUserImageButton;
+    private ImageView userHealthIssueStartImg;
+    private ImageView userPreferenceStartImg;
+    private ImageView userRestrictionStartImg;
 
     public ProfileActivity() {
     }
@@ -154,12 +157,15 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         // Preferences
+        userPreferenceStartImg = (ImageView) findViewById(R.id.user_preferences_start_img);
         preferences();
 
         // Restrictions
+        userRestrictionStartImg = (ImageView) findViewById(R.id.user_restrictions_start_img);
         restrictions();
 
         // HealthIssues
+        userHealthIssueStartImg = (ImageView) findViewById(R.id.user_health_issues_start_img);
         healthIssues();
     }
 
@@ -317,9 +323,11 @@ public class ProfileActivity extends AppCompatActivity {
                 if (userPreferencesDataLayout.isShown()) {
                     IMenuAnimation.slide_up(ProfileActivity.this, userPreferencesDataLayout);
                     userPreferencesDataLayout.setVisibility(View.GONE);
+                    userPreferenceStartImg.setImageResource(R.drawable.plus_icon);
                 } else {
                     userPreferencesDataLayout.setVisibility(View.VISIBLE);
                     IMenuAnimation.slide_down(ProfileActivity.this, userPreferencesDataLayout);
+                    userPreferenceStartImg.setImageResource(R.drawable.minus_icon);
                 }
             }
         });
@@ -403,9 +411,11 @@ public class ProfileActivity extends AppCompatActivity {
                 if (userRestrictionsDataLayout.isShown()) {
                     IMenuAnimation.slide_up(ProfileActivity.this, userRestrictionsDataLayout);
                     userRestrictionsDataLayout.setVisibility(View.GONE);
+                    userRestrictionStartImg.setImageResource(R.drawable.plus_icon);
                 } else {
                     userRestrictionsDataLayout.setVisibility(View.VISIBLE);
                     IMenuAnimation.slide_down(ProfileActivity.this, userRestrictionsDataLayout);
+                    userRestrictionStartImg.setImageResource(R.drawable.minus_icon);
                 }
             }
         });
@@ -491,9 +501,11 @@ public class ProfileActivity extends AppCompatActivity {
                 if (userHealthIssuesDataLayout.isShown()) {
                     IMenuAnimation.slide_up(ProfileActivity.this, userHealthIssuesDataLayout);
                     userHealthIssuesDataLayout.setVisibility(View.GONE);
+                    userHealthIssueStartImg.setImageResource(R.drawable.plus_icon);
                 } else {
                     userHealthIssuesDataLayout.setVisibility(View.VISIBLE);
                     IMenuAnimation.slide_down(ProfileActivity.this, userHealthIssuesDataLayout);
+                    userHealthIssueStartImg.setImageResource(R.drawable.minus_icon);
                 }
             }
         });
