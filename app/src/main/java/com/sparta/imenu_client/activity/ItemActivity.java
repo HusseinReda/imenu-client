@@ -15,25 +15,24 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.model.Item;
 import com.sparta.imenu_client.service.AddRateService;
 import com.sparta.imenu_client.service.GetRestaurantByNameService;
+import com.sparta.imenu_client.service.GetUserByEmailService;
 import com.sparta.imenu_client.userInterface.LogoutDialog;
+import com.sparta.imenu_client.userInterface.IMenuAnimation;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
 
 public class ItemActivity extends AppCompatActivity {
 
@@ -89,9 +88,8 @@ public class ItemActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_profile:
-                Intent profileIntent = new Intent(this, ProfileActivity.class);
-                profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                this.getApplicationContext().startActivity(profileIntent);
+                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this);
+                getUserByEmailService.execute();
                 return true;
 
             case R.id.action_logout:
@@ -119,7 +117,7 @@ public class ItemActivity extends AppCompatActivity {
         itemRestName.setText(item.getRestaurantName());
         itemDescription.setText(item.getDescription());
         itemPrice.setText(Double.toString(item.getPrice()));
-        itemRating.setText("Rating = "+ Double.toString(item.getRating()));
+        itemRating.setText("Rating = " + Double.toString(item.getRating()));
 
         ArrayList<String> ingredients = new ArrayList<>();
 
@@ -140,12 +138,12 @@ public class ItemActivity extends AppCompatActivity {
 
     public void toggle_contents(View v){
         if(ingredientsData.isShown()){
-            slide_up(this, ingredientsData);
+            IMenuAnimation.slide_up(this, ingredientsData);
             ingredientsData.setVisibility(View.GONE);
         }
         else{
             ingredientsData.setVisibility(View.VISIBLE);
-            slide_down(this, ingredientsData);
+            IMenuAnimation.slide_down(this, ingredientsData);
         }
     }
 
@@ -177,29 +175,5 @@ public class ItemActivity extends AppCompatActivity {
     public void openRestaurantHandler(View view){
         GetRestaurantByNameService getRestaurantByNameService = new GetRestaurantByNameService(this,item.getRestaurantName());
         getRestaurantByNameService.execute();
-    }
-
-    //    TODO move to animation class
-    public static void slide_down(Context context, View v){
-        Animation animation = AnimationUtils.loadAnimation(context, R.anim.slide_down);
-        if(animation != null){
-            animation.reset();
-            if(v != null){
-                v.clearAnimation();
-                v.startAnimation(animation);
-            }
-        }
-    }
-
-    //    TODO move to animation class
-    public static void slide_up(Context context, View v){
-        Animation animation = AnimationUtils.loadAnimation(context, R.anim.slide_up);
-        if(animation != null){
-            animation.reset();
-            if(v != null){
-                v.clearAnimation();
-                v.startAnimation(animation);
-            }
-        }
     }
 }

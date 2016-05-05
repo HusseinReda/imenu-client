@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Hussein Abu Maash on 3/18/2016.
  */
 
-public class Review implements Serializable {
+public class Review implements Serializable{
     private int id;
     private User user;
     private String reviewText;

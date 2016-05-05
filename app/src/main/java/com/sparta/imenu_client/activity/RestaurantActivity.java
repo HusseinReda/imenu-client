@@ -31,6 +31,7 @@ import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.model.Contact;
 import com.sparta.imenu_client.model.Restaurant;
 import com.sparta.imenu_client.service.AddRateService;
+import com.sparta.imenu_client.service.GetUserByEmailService;
 import com.sparta.imenu_client.userInterface.LogoutDialog;
 import com.squareup.picasso.Picasso;
 
@@ -138,9 +139,8 @@ public class RestaurantActivity extends AppCompatActivity{
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_profile:
-                Intent profileIntent = new Intent(this, ProfileActivity.class);
-                profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                this.getApplicationContext().startActivity(profileIntent);
+                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this);
+                getUserByEmailService.execute();
                 return true;
 
             case R.id.action_logout:

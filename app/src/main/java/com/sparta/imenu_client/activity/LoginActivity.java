@@ -1,5 +1,7 @@
 package com.sparta.imenu_client.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,8 +18,13 @@ import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.model.User;
 import com.sparta.imenu_client.model.UserRequest;
 import com.sparta.imenu_client.service.AddRestaurant;
+import com.sparta.imenu_client.service.GetAllUserSpecService;
 import com.sparta.imenu_client.service.LoginAuthService;
 import com.sparta.imenu_client.service.SignUpService;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class LoginActivity extends AppCompatActivity {
     final String TAG ="LoginActivity";
@@ -34,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         SharedPreferences currentUserPref = getApplicationContext().getSharedPreferences("CurrentUser",MODE_PRIVATE);
         if(currentUserPref.getString("email",null)!=null){
             Intent homeIntent = new Intent(this, HomeActivity.class);
@@ -46,29 +54,20 @@ public class LoginActivity extends AppCompatActivity {
         passwordTextFlag = false;
         passwordText = (EditText) findViewById(R.id.passwordLoginEditText);
         emailText = (EditText) findViewById(R.id.emailLoginEditText);
-        emailText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
     public void loginHandler(View view) {
-        LoginAuthService service = new LoginAuthService(this,new UserRequest(getUsername(),getPassword()));
-        service.execute();
-    }
-
-    public void addRestaurantHandler(View view) {
-        new AddRestaurant(this).execute();
+        if(getUsername().equals("admin")&&getPassword().equals("admin")){
+            SharedPreferences currentUserPref = getApplicationContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
+            Intent homeIntent = new Intent(this, AdminActivity.class);
+            homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getApplicationContext().startActivity(homeIntent);
+            finish();
+        }
+        else {
+            LoginAuthService service = new LoginAuthService(this, new UserRequest(getUsername(), getPassword()));
+            service.execute();
+        }
     }
 
     public void signUpHandler(View view) {
@@ -81,7 +80,12 @@ public class LoginActivity extends AppCompatActivity {
                 email.getText().toString(),
                 password.getText().toString(),
                 gender.getText().toString());
-        //newUser.getPreferences().add("beef");
+
+        Calendar newDate = Calendar.getInstance();
+        newDate.set(newDate.get(Calendar.YEAR), newDate.get(Calendar.MONTH), newDate.get(Calendar.DAY_OF_MONTH));
+        newUser.setJoinDate(newDate.getTime());
+        byte[] temp={'a'};
+        newUser.setImage(temp);
         SignUpService signUpService=new SignUpService(this,newUser);
         signUpService.execute();
     }

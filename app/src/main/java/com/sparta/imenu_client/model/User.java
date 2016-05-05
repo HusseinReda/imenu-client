@@ -4,6 +4,7 @@ import com.sparta.imenu_client.service.HealthIssueService;
 import com.sparta.imenu_client.service.PreferenceService;
 import com.sparta.imenu_client.service.RestrictionService;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ArrayList;
@@ -13,17 +14,18 @@ import java.util.List;
  * Created by Hussein Abu Maash on 3/10/2016.
  */
 
-public class User {
+public class User implements Serializable {
     private int id;
     private String name;
     private String email;
     private String password;
-    private String gender;
+    private String gender; //Male or Female
     private Date dateOfBirth;
     private Date joinDate;
     private String country;
     private String city;
     private String picture;
+    private byte[] image;
     ///////
     private ArrayList<Contact> contacts;
     //////
@@ -157,7 +159,15 @@ public class User {
         this.restrictions = restrictions;
     }
 
-//    public void addPreference(String preference){
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    //    public void addPreference(String preference){
 //        PreferenceService addPreferenceService = new PreferenceService(getEmail(),preference,"add");
 //        if(addPreferenceService.getResult())
 //            getPreferences().add(preference);
@@ -237,4 +247,57 @@ public class User {
         }
         return "safe";
     }
+
+    public void copyUser(User user) {
+        this.id = user.id;
+        this.name = user.name;
+        this.email = user.email;
+        this.password = user.password;
+        this.gender = user.gender;
+        this.dateOfBirth = user.dateOfBirth;
+        this.joinDate = user.joinDate;
+        this.country = user.country;
+        this.city = user.city;
+        this.picture = user.picture;
+        this.contacts = user.contacts;
+        this.preferences = user.preferences;
+        this.healthIssues = user.healthIssues;
+        this.restrictions = user.restrictions;
+        this.reviews = user.reviews;
+        this.image = user.image;
+    }
+
+    public boolean findRestrictionByName(String name){
+        for(int i=0;i<restrictions.size();i++){
+            if(restrictions.get(i).getName().equals(name))
+                return true;
+        }
+        return false;
+    }
+    public boolean findHealthIssueByName(String name){
+        for(int i=0;i<healthIssues.size();i++){
+            if(healthIssues.get(i).getName().equals(name))
+                return true;
+        }
+        return false;
+    }
+
+    public void removeRestrictionByName(String name){
+        for(int i=0;i<restrictions.size();i++){
+            if(restrictions.get(i).getName().equals(name)){
+                restrictions.remove(i);
+                return;
+            }
+        }
+    }
+
+    public void removeHealthIssueByName(String name){
+        for(int i=0;i<healthIssues.size();i++){
+            if(healthIssues.get(i).getName().equals(name)){
+                healthIssues.remove(i);
+                return;
+            }
+        }
+    }
+
 }

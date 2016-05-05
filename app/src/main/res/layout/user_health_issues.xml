@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:background="#f4f4f4"
+        android:clickable="true"
+        android:id="@+id/user_health_issues_start"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/plus_icon"
+            android:maxWidth="10dp"
+            android:maxHeight="10dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/health_issues"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:id="@+id/user_health_issues_data_layout">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/user_health_issues_data"
+            />
+
+        <!-- add new health issue-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/add_remove_health_issue"
+            android:background="#f4f4f4"
+            android:textColor="#6262ff"
+            android:clickable="true"
+            android:id="@+id/user_add_remove_health_issue_start"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:id="@+id/user_add_remove_health_issue_data">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatSpinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/user_add_new_health_issue_spinner">
+                </android.support.v7.widget.AppCompatSpinner>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_add_new_health_issue_spinner"
+                    android:text="@string/add"
+                    android:id="@+id/user_add_new_health_issue_button"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_add_new_health_issue_spinner"
+                    android:layout_toRightOf="@+id/user_add_new_health_issue_button"
+                    android:text="@string/remove"
+                    android:id="@+id/user_remove_new_health_issue_button"/>
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/user_new_health_issues"
+                android:text="@string/new_health_issues"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="top"/>
+
+        </LinearLayout>
+
+        <!-- -->
+    </LinearLayout>
+</LinearLayout>

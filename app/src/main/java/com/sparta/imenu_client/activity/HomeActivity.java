@@ -22,7 +22,9 @@ import android.widget.SearchView;
 
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.model.Item;
+import com.sparta.imenu_client.service.GetAllUserSpecService;
 import com.sparta.imenu_client.service.GetRecommendedService;
+import com.sparta.imenu_client.service.GetUserByEmailService;
 import com.sparta.imenu_client.userInterface.ItemRecyclerViewAdapter;
 import com.sparta.imenu_client.userInterface.LogoutDialog;
 
@@ -48,6 +50,9 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        GetAllUserSpecService getAllUserSpecService = new GetAllUserSpecService(this);
+        getAllUserSpecService.execute();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.home_toolbar);
         setSupportActionBar(toolbar);
@@ -137,9 +142,8 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_profile:
-                Intent profileIntent = new Intent(this, ProfileActivity.class);
-                profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                this.getApplicationContext().startActivity(profileIntent);
+                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this);
+                getUserByEmailService.execute();
                 return true;
 
             case R.id.action_logout:

@@ -12,10 +12,6 @@
     tools:callingActivity=".activity.LoginActivity"
     tools:showIn="@layout/activity_login">
 
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="Hello World!" />-->
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -150,15 +146,5 @@
         android:layout_centerHorizontal="true"
         android:text="@string/signUp"
         android:onClick="signUpHandler" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_alignTop="@+id/loginButton"
-        android:layout_toLeftOf="@+id/radioGenderGroup"
-        android:layout_toStartOf="@+id/radioGenderGroup"
-        android:onClick="addRestaurantHandler"/>
 
 </RelativeLayout>

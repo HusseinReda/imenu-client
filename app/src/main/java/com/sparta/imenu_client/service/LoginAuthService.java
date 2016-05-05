@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -69,7 +70,7 @@ public class LoginAuthService extends AsyncTask<Void, Void, Boolean> {
                 Intent homeIntent = new Intent(context, HomeActivity.class);
                 homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.getApplicationContext().startActivity(homeIntent);
-                ((Activity)context).finish();
+                ((AppCompatActivity)context).finish();
             } else {
                 Toast.makeText(context, "Incorrect email or password", Toast.LENGTH_LONG).show();
                 Intent loginIntent = new Intent(context, LoginActivity.class);

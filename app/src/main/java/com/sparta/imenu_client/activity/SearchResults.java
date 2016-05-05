@@ -19,6 +19,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.sparta.imenu_client.R;
+import com.sparta.imenu_client.service.GetUserByEmailService;
 import com.sparta.imenu_client.userInterface.LogoutDialog;
 
 import java.util.ArrayList;
@@ -126,9 +127,8 @@ public class SearchResults extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_profile:
-                Intent profileIntent = new Intent(this, ProfileActivity.class);
-                profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                this.getApplicationContext().startActivity(profileIntent);
+                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this);
+                getUserByEmailService.execute();
                 return true;
 
             case R.id.action_logout:

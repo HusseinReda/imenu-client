@@ -1,6 +1,7 @@
 package com.sparta.imenu_client.service;
 
 import com.sparta.imenu_client.model.Item;
+import com.sparta.imenu_client.model.UserSpec;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,5 +45,43 @@ public class Auxiliary {
         }
         Collections.reverse(result);
         return result;
+    }
+
+    public static ArrayList<UserSpec> restrictions;
+    public static ArrayList<UserSpec> healthIssues;
+
+    public static void addRestriction(UserSpec restriction){
+        if(restrictions==null)
+            restrictions = new ArrayList<UserSpec>();
+        for(int i=0;i<restrictions.size();i++)
+            if(restrictions.get(i).getId()==restriction.getId())
+                return;
+
+        restrictions.add(restriction);
+    }
+
+    public static void addHealthIssue(UserSpec healthIssue){
+        if(healthIssues==null)
+            healthIssues = new ArrayList<UserSpec>();
+        for(int i=0;i<healthIssues.size();i++)
+            if(healthIssues.get(i).getId()==healthIssue.getId())
+                return;
+        healthIssues.add(healthIssue);
+    }
+
+    public static UserSpec getRestrictionByName(String name){
+        for(int i=0;i<restrictions.size();i++){
+            if(restrictions.get(i).getName().equals(name))
+                return restrictions.get(i);
+        }
+        return null;
+    }
+
+    public static UserSpec getHealthIssueByName(String name){
+        for(int i=0;i<healthIssues.size();i++){
+            if(healthIssues.get(i).getName().equals(name))
+                return healthIssues.get(i);
+        }
+        return null;
     }
 }
