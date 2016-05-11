@@ -54,6 +54,9 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
         GetAllUserSpecService getAllUserSpecService = new GetAllUserSpecService(this);
         getAllUserSpecService.execute();
 
+        GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this,false);
+        getUserByEmailService.execute();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.home_toolbar);
         setSupportActionBar(toolbar);
 
@@ -64,44 +67,6 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         SharedPreferences currentUserPref = getApplicationContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
         email = currentUserPref.getString("email",null);
-
-        ///meals hardcoding
-//        String names[] = {"Mighty Bucket Meal","Mighty Popcorn Meal","My Meal","Super Snack Meal","Super Snack Meal",
-//                "Dinner Box","Dinner Box","Extra Chicken Piece"};
-//        String urls[]={"https://assets.otlob.com/dynamic/images/products/62/62574_1453380791_ma.png",
-//                "https://assets.otlob.com/dynamic/images/products/62/62579_1453380790_ma.png",
-//                "https://assets.otlob.com/dynamic/images/products/62/62580_1453387656_ma.jpg",
-//                "https://assets.otlob.com/dynamic/images/products/62/62587_1453387656_ma.jpg",
-//                "https://assets.otlob.com/dynamic/images/products/62/62588_1442482035_ma.jpg",
-//                "https://assets.otlob.com/dynamic/images/products/62/62612_1448372552_ma.jpg",
-//                "https://assets.otlob.com/dynamic/images/products/62/62613_1448372552_ma.jpg",
-//                "https://assets.otlob.com/dynamic/images/products/62/62614_1453381076_ma.jpg",
-//        };
-//        double prices[] ={48.18,50.00,10.45,23.64,18.64,31.82,39.54,9.54};
-//        String descriptions[]={"2 pieces chicken + 3 pieces chicken strips + small French fries + small coleslaw salad + bun + garlic mayonnaise sauce + dynamite sauce + soft drink",
-//                "2 pieces chicken + 2 pieces chicken strips + 10 popcorn + small French fries + small coleslaw salad + bun + garlic mayonnaise sauce + dynamite sauce + soft drink",
-//                "one chicken piece, served with small French fries + 2 bun bread",
-//                "2 pieces chicken, served with large rice + small French fries + bun",
-//                "2 pieces fried chicken + small French fries + bun",
-//                "3 pieces fried chicken + small French fries + coleslaw salad + bun",
-//                "3 pieces fried chicken + medium French fries + coleslaw salad + bun",
-//                "a"};
-//
-//        ArrayList<String> keywords[] = new ArrayList[]{new ArrayList<String>(Arrays.asList("chicken", "strips", "fries",
-//                "coleslaw", "salad", "bun", "garlic mayonnaise sauce", "dynamite sauce", "drink", "bread")),
-//                new ArrayList<String>(Arrays.asList("chicken","strips","popcorn","fries","coleslaw","bun","garlic mayonnaise sauce","dynamite sauce","drink","bread")),
-//                new ArrayList<String>(Arrays.asList("chicken","one piece","fries","bun","bread")),
-//                new ArrayList<String>(Arrays.asList("chicken","2 pieces","rice","large rice","fries","bun","bread")),
-//                new ArrayList<String>(Arrays.asList("chicken","2 pieces","fries","bun","bread")),
-//                new ArrayList<String>(Arrays.asList("chicken","3 pieces","fries","small fries","coleslaw","salad","bun","bread")),
-//                new ArrayList<String>(Arrays.asList("chicken","3 pieces","fries","medium fries","coleslaw","salad","bun","bread")),
-//                new ArrayList<String>(Arrays.asList("chicken","1 pieces"))
-//        };
-//        ArrayList<Item> items = new ArrayList<Item>();
-//        for (int i=0;i<names.length;i++) {
-//            items.add(new Item(names[i],"KFC", "chicken", prices[i], descriptions[i], keywords[i], urls[i]));
-//        }
-        ///
 
         progressBar = (ProgressBar) findViewById(R.id.home_progress_bar);
         progressBar.setVisibility(View.VISIBLE);
@@ -142,7 +107,7 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_profile:
-                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this);
+                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this,true);
                 getUserByEmailService.execute();
                 return true;
 

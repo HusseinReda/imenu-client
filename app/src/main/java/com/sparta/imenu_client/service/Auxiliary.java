@@ -1,6 +1,7 @@
 package com.sparta.imenu_client.service;
 
 import com.sparta.imenu_client.model.Item;
+import com.sparta.imenu_client.model.User;
 import com.sparta.imenu_client.model.UserSpec;
 
 import java.util.ArrayList;
@@ -14,6 +15,9 @@ import java.util.Map;
  * Created by sabaa on 5/2/16.
  */
 public class Auxiliary {
+
+    private static User currentUser;
+
     public static List<Item> sortByRelevanceModified(List<Item> items, String[] queries) {
         Map<Integer, List<Item>> hashMap = new HashMap<Integer, List<Item>>();
         for(int i=0;i<items.size();i++){
@@ -83,5 +87,51 @@ public class Auxiliary {
                 return healthIssues.get(i);
         }
         return null;
+    }
+
+    public static ArrayList<String> searchInAllHealthIssues(User user, String itemKeyword){
+        ArrayList<UserSpec> healthIssuesToSearchIn = new ArrayList<UserSpec>();
+        if(user==null)
+            healthIssuesToSearchIn=healthIssues;
+        else
+            healthIssuesToSearchIn= (ArrayList<UserSpec>) user.getHealthIssues();
+
+        ArrayList<String> returnedNotes= new ArrayList<String>();
+        for(int i=0;i<healthIssuesToSearchIn.size();i++){
+            List<String> healthIssueKeywords=healthIssuesToSearchIn.get(i).getKeywords();
+            for(int c=0;c<healthIssueKeywords.size();c++){
+                if(itemKeyword.equals(healthIssueKeywords.get(c))){
+                    returnedNotes.add(healthIssuesToSearchIn.get(i).getNote());
+                    break;
+                }
+            }
+        }
+        return returnedNotes;
+    }
+    public static ArrayList<String> searchInAllRestrictions(User user, String itemKeyword){
+        ArrayList<UserSpec> restrictionsToSearchIn = new ArrayList<UserSpec>();
+        if(user==null)
+            restrictionsToSearchIn=restrictions;
+        else
+            restrictionsToSearchIn= (ArrayList<UserSpec>) user.getRestrictions();
+        ArrayList<String> returnedNotes= new ArrayList<String>();
+        for(int i=0;i<restrictionsToSearchIn.size();i++){
+            List<String> restrictionKeywords=restrictionsToSearchIn.get(i).getKeywords();
+            for(int c=0;c<restrictionKeywords.size();c++){
+                if(itemKeyword.equals(restrictionKeywords.get(c))){
+                    returnedNotes.add(restrictionsToSearchIn.get(i).getNote());
+                    break;
+                }
+            }
+        }
+        return returnedNotes;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        Auxiliary.currentUser = currentUser;
     }
 }

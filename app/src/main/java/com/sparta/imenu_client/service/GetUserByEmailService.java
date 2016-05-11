@@ -23,12 +23,14 @@ public class GetUserByEmailService extends AsyncTask<Void,Void,User>{
     Context context;
     String email;
     User currentUser;
+    boolean moveToProfilePage;
 
-    public GetUserByEmailService(Context context) {
+    public GetUserByEmailService(Context context,boolean moveToProfilePage) {
         this.context = context;
         SharedPreferences currentUserPref = context.getApplicationContext()
                 .getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
         email = currentUserPref.getString("email",null);
+        this.moveToProfilePage=moveToProfilePage;
     }
 
     @Override
@@ -43,9 +45,13 @@ public class GetUserByEmailService extends AsyncTask<Void,Void,User>{
 
     @Override
     protected void onPostExecute(User user) {
-        Intent profileIntent = new Intent(context, ProfileActivity.class);
-        profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        profileIntent.putExtra("currentUser",user);
-        context.getApplicationContext().startActivity(profileIntent);
+        Auxiliary.setCurrentUser(user);
+
+        if(moveToProfilePage) {
+            Intent profileIntent = new Intent(context, ProfileActivity.class);
+            profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            profileIntent.putExtra("currentUser", user);
+            context.getApplicationContext().startActivity(profileIntent);
+        }
     }
 }

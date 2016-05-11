@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.model.Item;
 import com.sparta.imenu_client.service.AddRateService;
+import com.sparta.imenu_client.service.Auxiliary;
 import com.sparta.imenu_client.service.GetRestaurantByNameService;
 import com.sparta.imenu_client.service.GetUserByEmailService;
 import com.sparta.imenu_client.userInterface.LogoutDialog;
@@ -32,6 +33,8 @@ import com.sparta.imenu_client.userInterface.IMenuAnimation;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class ItemActivity extends AppCompatActivity {
@@ -47,6 +50,12 @@ public class ItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item);
         Intent myIntent = getIntent();
         item = (Item) myIntent.getSerializableExtra("item");
+
+        // Issues notes
+        String issuesNotes = getIssuesNotes();
+        if(!issuesNotes.equals("")){
+            showIssuesNotesDialog(issuesNotes);
+        }
 
         itemIngredientsLayoutImg = (ImageView) findViewById(R.id.item_ingredients_layout_img);
 
@@ -67,6 +76,56 @@ public class ItemActivity extends AppCompatActivity {
 
         bindData(item);
 
+    }
+
+    private String getIssuesNotes() {
+        HashSet<String> notes = new HashSet<>();
+        ArrayList<String> returnedNotes = new ArrayList<String>();
+        String printedNote="";
+
+        // Restrictions
+        for(int i=0;i<item.getKeywords().size();i++){
+            ArrayList<String> temp = Auxiliary.searchInAllRestrictions(Auxiliary.getCurrentUser(), item.getKeywords().get(i));
+            for(int c=0;c<temp.size();c++)
+                returnedNotes.add(temp.get(c));
+        }
+
+        // Health Issues
+        for(int i=0;i<item.getKeywords().size();i++){
+            ArrayList<String> temp = Auxiliary.searchInAllHealthIssues(Auxiliary.getCurrentUser(),item.getKeywords().get(i));
+            for(int c=0;c<temp.size();c++)
+                returnedNotes.add(temp.get(c));
+        }
+
+        Log.i("returned", String.valueOf(returnedNotes.size()));
+        for(int i=0;i<returnedNotes.size();i++)
+            notes.add(returnedNotes.get(i));
+
+        Log.i("notes", String.valueOf(notes.size()));
+        for (String note : notes) {
+            Log.i("note",note);
+            printedNote+="- "+note+"\n";
+        }
+
+        return printedNote;
+    }
+
+    private void showIssuesNotesDialog(String issuesNotes) {
+        final AlertDialog.Builder issuesNotesDialog = new AlertDialog.Builder(this);
+
+        issuesNotesDialog.setCancelable(true);
+        issuesNotesDialog.setTitle(R.string.warning);
+        issuesNotesDialog.setIcon(android.R.drawable.ic_dialog_alert);
+        issuesNotesDialog.setMessage(issuesNotes);
+
+        issuesNotesDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        AlertDialog alertDialog = issuesNotesDialog.create();
+        alertDialog.show();
     }
 
     private void setUpSearch() {
@@ -90,7 +149,7 @@ public class ItemActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_profile:
-                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this);
+                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this,true);
                 getUserByEmailService.execute();
                 return true;
 
@@ -174,7 +233,6 @@ public class ItemActivity extends AppCompatActivity {
         AlertDialog alertDialog = ratingDialog.create();
         alertDialog.show();
     }
-
 
     public void openRestaurantHandler(View view){
         GetRestaurantByNameService getRestaurantByNameService = new GetRestaurantByNameService(this,item.getRestaurantName());

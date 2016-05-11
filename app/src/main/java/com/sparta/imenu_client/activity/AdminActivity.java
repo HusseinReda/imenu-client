@@ -70,7 +70,7 @@ public class AdminActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_profile:
-                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this);
+                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this,true);
                 getUserByEmailService.execute();
                 return true;
 
@@ -153,7 +153,7 @@ public class AdminActivity extends AppCompatActivity {
                 null,null);
         Menu menu_mac = new Menu();
         String names_mac[] = {"Big Mac","Big Tasty","Fillet-O-Fish Sandwich","Quarter Pounder with Cheese","Double Cheeseburger Sandwich",
-                "Chicken MACDO","Cheeseburger Sandwich","McArabia Kofta Sandwich"};
+                "Chicken MACDO ++","Cheeseburger Sandwich +","McArabia Beans Sandwich"};
         String urls_mac[]={"https://assets.otlob.com/dynamic/images/products/60/60758_1442409163_ma.jpg",
                 "https://assets.otlob.com/dynamic/images/products/60/60759_1442409162_ma.jpg",
                 "https://assets.otlob.com/dynamic/images/products/60/60718_1442408805_ma.jpg",
@@ -178,9 +178,9 @@ public class AdminActivity extends AppCompatActivity {
                 new ArrayList<String>(Arrays.asList("Bread","Fillet fish","fish","fillet","Tartar sauce","tartar","Cheese", "mac", "macdonalds")),
                 new ArrayList<String>(Arrays.asList("Bread","Beef burger","beef","Cheese","Ketchup","Mustard","Pickles","Onions", "mac", "macdonalds")),
                 new ArrayList<String>(Arrays.asList("Bread","Beef burger","beef","ketchup","mustard","onions","pickles","beef", "mac", "macdonalds")),
-                new ArrayList<String>(Arrays.asList("Bread","Chicken","Lettuce","Mayo","fresh", "MAC", "macdonalds")),
-                new ArrayList<String>(Arrays.asList("Bread","Beef burger","beef","Cheese","Ketchup","Onions","Pickles","beef", "mac", "macdonalds")),
-                new ArrayList<String>(Arrays.asList("Arabic bread","Beef kofta","beef","Kofta","Lettuce","Tomatoes","Onions","Garlic","bun","bread", "mac", "macdonalds"))
+                new ArrayList<String>(Arrays.asList("Bread","Pork","pork","Beans","beans","Lettuce","Mayo","fresh", "MAC", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("Bread","Pork","pork","Burger","beef","Cheese","Ketchup","Onions","Pickles","beef", "mac", "macdonalds")),
+                new ArrayList<String>(Arrays.asList("Arabic bread","Beans","beans","beef","Lettuce","Tomatoes","Onions","Garlic","bun","bread", "mac", "macdonalds"))
         };
         ArrayList<Item> items_mac = new ArrayList<Item>();
         for (int i=0;i<names.length;i++) {
@@ -199,20 +199,30 @@ public class AdminActivity extends AppCompatActivity {
         List<UserSpec> userSpecs = new ArrayList<UserSpec>();
         UserSpec halalRestriction = new UserSpec();
         halalRestriction.setName("Halal");
-        halalRestriction.setNote("Take care! This is not \"Halal\"");
+        halalRestriction.setNote("Take care! This is not \"Halal\" !");
         halalRestriction.setType(false);
         ArrayList<String> keywordsForHalal = new ArrayList<String>();
-        keywordsForHalal.add("halal");
+        keywordsForHalal.add("pork");
+        keywordsForHalal.add("alcoholic");
+        keywordsForHalal.add("alcohol");
+        keywordsForHalal.add("wine");
+        keywordsForHalal.add("beer");
+        keywordsForHalal.add("ham");
+
         halalRestriction.setKeywords(keywordsForHalal);
 
         userSpecs.add(halalRestriction);
 
         UserSpec vegetarianRestriction = new UserSpec();
         vegetarianRestriction.setName("Vegetarian");
-        vegetarianRestriction.setNote("Take care! This is not \"Vegetarian\"");
+        vegetarianRestriction.setNote("Take care! This is not for \"Vegetarians\" !");
         vegetarianRestriction.setType(false);
         ArrayList<String> keywordsForVegetarian = new ArrayList<String>();
-        keywordsForVegetarian.add("vegetarian");
+        keywordsForVegetarian.add("beef");
+        keywordsForVegetarian.add("chicken");
+        keywordsForVegetarian.add("meat");
+        keywordsForVegetarian.add("pork");
+        keywordsForVegetarian.add("ham");
         vegetarianRestriction.setKeywords(keywordsForVegetarian);
 
         userSpecs.add(vegetarianRestriction);
@@ -233,6 +243,7 @@ public class AdminActivity extends AppCompatActivity {
         favismHealthIssue.setType(true);
         ArrayList<String> keywordsForFavism = new ArrayList<String>();
         keywordsForFavism.add("beans");
+        keywordsForFavism.add("bean");
         favismHealthIssue.setKeywords(keywordsForFavism);
 
         userSpecs.add(favismHealthIssue);

@@ -139,7 +139,7 @@ public class RestaurantActivity extends AppCompatActivity{
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_profile:
-                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this);
+                GetUserByEmailService getUserByEmailService = new GetUserByEmailService(this,true);
                 getUserByEmailService.execute();
                 return true;
 

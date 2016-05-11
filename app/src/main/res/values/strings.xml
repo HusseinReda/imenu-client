@@ -68,4 +68,6 @@
     <string name="save_changes">Save changes</string>
     <string name="update_password">Update Password</string>
     <string name="remove_picture">Remove picture?</string>
+    <string name="warning">Warning !</string>
+    <string name="ok">Ok</string>
 </resources>
