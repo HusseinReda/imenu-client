@@ -54,8 +54,6 @@ public class RestaurantActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.restaurant_toolbar);
         setSupportActionBar(toolbar);
 
-        setUpSearch();
-
         final Button btn1 = (Button) findViewById(R.id.add_restaurant_rating_button);
         btn1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -73,11 +71,11 @@ public class RestaurantActivity extends AppCompatActivity{
 
     }
 
-    private void setUpSearch() {
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) findViewById(R.id.search_view);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-    }
+//    private void setUpSearch() {
+//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView = (SearchView) findViewById(R.id.search_view);
+//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//    }
 
     private void setupViewPager(ViewPager viewPager) {
 

@@ -62,8 +62,6 @@ public class ItemActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.item_toolbar);
         setSupportActionBar(toolbar);
 
-        setUpSearch();
-
         final Button btn1 = (Button) findViewById(R.id.add_item_rating_button);
         btn1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -128,13 +126,13 @@ public class ItemActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void setUpSearch() {
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) findViewById(R.id.search_view);
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(new ComponentName(this, SearchResults.class)));
-    }
+//    private void setUpSearch() {
+//        SearchManager searchManager =
+//                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView = (SearchView) findViewById(R.id.search_view);
+//        searchView.setSearchableInfo(
+//                searchManager.getSearchableInfo(new ComponentName(this, SearchResults.class)));
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -177,8 +175,8 @@ public class ItemActivity extends AppCompatActivity {
         itemName.setText(item.getName());
         itemRestName.setText(item.getRestaurantName());
         itemDescription.setText(item.getDescription());
-        itemPrice.setText(Double.toString(item.getPrice()));
-        itemRating.setText("Rating = " + Double.toString(item.getRating()));
+        itemPrice.setText("Price : "  + Double.toString(item.getPrice()) + " LE");
+        itemRating.setText("Rating : " + Double.toString(item.getRating()));
 
         ArrayList<String> ingredients = new ArrayList<>();
 

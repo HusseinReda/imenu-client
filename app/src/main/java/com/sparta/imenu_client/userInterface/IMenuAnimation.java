@@ -13,23 +13,22 @@ import com.sparta.imenu_client.R;
 public class IMenuAnimation {
     public static void slide_down(Context context, View v){
         android.view.animation.Animation animation = AnimationUtils.loadAnimation(context, R.anim.slide_down);
-        if(animation != null){
-            animation.reset();
-            if(v != null){
-                v.clearAnimation();
-                v.startAnimation(animation);
-            }
-        }
+        v.startAnimation(animation);
     }
 
     public static void slide_up(Context context, View v){
         android.view.animation.Animation animation = AnimationUtils.loadAnimation(context, R.anim.slide_up);
-        if(animation != null){
-            animation.reset();
-            if(v != null){
-                v.clearAnimation();
-                v.startAnimation(animation);
-            }
-        }
+        v.startAnimation(animation);
     }
+
+    public static void fade_in(Context context, View v){
+        android.view.animation.Animation animation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
+        v.startAnimation(animation);
+    }
+
+    public static void fade_out(Context context, View v){
+        android.view.animation.Animation animation = AnimationUtils.loadAnimation(context, R.anim.fade_out);
+        v.startAnimation(animation);
+    }
+
 }

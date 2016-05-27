@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -28,7 +30,7 @@
             android:layout_below="@id/restaurant_name"
             android:textSize="30sp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="8dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,14 +40,14 @@
             android:textSize="20sp"
             android:textStyle="italic"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="8dp"/>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/restaurant_description"
             android:layout_toRightOf="@id/restaurant_image"
             android:id="@+id/restaurant_rating_frame"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp">
             <TextView
                 android:layout_width="wrap_content"
@@ -64,15 +66,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/restaurant_contacts"
-            android:layout_toRightOf="@+id/restaurant_image"
-            android:layout_below="@id/restaurant_rating_frame"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+
             android:text="@string/restaurant_contacts"
             android:textColor="#6262ff"
             android:onClick="contactsHandler"
             android:clickable="true"
-            />
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"

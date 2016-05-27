@@ -28,7 +28,7 @@ public class LogoutDialog {
                 editor.clear();
                 editor.commit();
                 Intent loginIntent = new Intent(callingActivity, LoginActivity.class);
-                loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 callingActivity.getApplicationContext().startActivity(loginIntent);
                 callingActivity.finish();
             }

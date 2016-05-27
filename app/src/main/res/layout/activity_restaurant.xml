@@ -28,15 +28,15 @@ tools:callingActivity="com.sparta.imenu_client.activity.RestaurantActivity">
             android:layout_weight="1"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
         </android.support.v7.widget.Toolbar>
-        <SearchView
-            android:id="@+id/search_view"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:queryHint="@string/search_hint"
-            android:iconifiedByDefault="false"
-            android:focusable="false"
-            >
-        </SearchView>
+        <!--<SearchView-->
+            <!--android:id="@+id/search_view"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:queryHint="@string/search_hint"-->
+            <!--android:iconifiedByDefault="false"-->
+            <!--android:focusable="false"-->
+            <!-->-->
+        <!--</SearchView>-->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

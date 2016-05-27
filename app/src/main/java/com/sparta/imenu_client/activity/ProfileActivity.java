@@ -320,11 +320,11 @@ public class ProfileActivity extends AppCompatActivity {
         userPreferenceStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (userPreferencesDataLayout.isShown()) {
+                if (userPreferencesDataLayout.getVisibility()==View.VISIBLE) {
                     IMenuAnimation.slide_up(ProfileActivity.this, userPreferencesDataLayout);
                     userPreferencesDataLayout.setVisibility(View.GONE);
                     userPreferenceStartImg.setImageResource(R.drawable.plus_icon);
-                } else {
+                } else if (userPreferencesDataLayout.getVisibility()==View.GONE){
                     userPreferencesDataLayout.setVisibility(View.VISIBLE);
                     IMenuAnimation.slide_down(ProfileActivity.this, userPreferencesDataLayout);
                     userPreferenceStartImg.setImageResource(R.drawable.minus_icon);
@@ -408,11 +408,11 @@ public class ProfileActivity extends AppCompatActivity {
         userRestrictionStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (userRestrictionsDataLayout.isShown()) {
+                if (userRestrictionsDataLayout.getVisibility()==View.VISIBLE) {
                     IMenuAnimation.slide_up(ProfileActivity.this, userRestrictionsDataLayout);
                     userRestrictionsDataLayout.setVisibility(View.GONE);
                     userRestrictionStartImg.setImageResource(R.drawable.plus_icon);
-                } else {
+                } else if (userRestrictionsDataLayout.getVisibility()==View.GONE){
                     userRestrictionsDataLayout.setVisibility(View.VISIBLE);
                     IMenuAnimation.slide_down(ProfileActivity.this, userRestrictionsDataLayout);
                     userRestrictionStartImg.setImageResource(R.drawable.minus_icon);
@@ -498,11 +498,11 @@ public class ProfileActivity extends AppCompatActivity {
         userHealthIssueStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (userHealthIssuesDataLayout.isShown()) {
+                if (userHealthIssuesDataLayout.getVisibility()==View.VISIBLE) {
                     IMenuAnimation.slide_up(ProfileActivity.this, userHealthIssuesDataLayout);
                     userHealthIssuesDataLayout.setVisibility(View.GONE);
                     userHealthIssueStartImg.setImageResource(R.drawable.plus_icon);
-                } else {
+                } else if (userHealthIssuesDataLayout.getVisibility()==View.GONE){
                     userHealthIssuesDataLayout.setVisibility(View.VISIBLE);
                     IMenuAnimation.slide_down(ProfileActivity.this, userHealthIssuesDataLayout);
                     userHealthIssueStartImg.setImageResource(R.drawable.minus_icon);

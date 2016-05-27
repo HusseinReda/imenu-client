@@ -10,8 +10,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.sparta.imenu_client.R;
@@ -21,6 +24,7 @@ import com.sparta.imenu_client.service.AddRestaurant;
 import com.sparta.imenu_client.service.GetAllUserSpecService;
 import com.sparta.imenu_client.service.LoginAuthService;
 import com.sparta.imenu_client.service.SignUpService;
+import com.sparta.imenu_client.userInterface.IMenuAnimation;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,13 +34,11 @@ public class LoginActivity extends AppCompatActivity {
     final String TAG ="LoginActivity";
     boolean emailTextFlag;
     boolean passwordTextFlag;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-    public EditText passwordText;
-    public EditText emailText;
+    EditText passwordText;
+    EditText emailText;
+    RelativeLayout signUpLayout;
+    TextView newAccountTextView;
+    LinearLayout contentLoginLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +52,34 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
         setContentView(R.layout.activity_login);
+
+        contentLoginLayout = (LinearLayout) findViewById(R.id.content_login_layout);
+        contentLoginLayout.setVisibility(View.GONE);
+        IMenuAnimation.fade_in(this,contentLoginLayout);
+        contentLoginLayout.setVisibility(View.VISIBLE);
+
         emailTextFlag = false;
         passwordTextFlag = false;
         passwordText = (EditText) findViewById(R.id.passwordLoginEditText);
         emailText = (EditText) findViewById(R.id.emailLoginEditText);
+
+        // sign up toggle view
+        newAccountTextView = (TextView) findViewById(R.id.newAccountTextView);
+        signUpLayout = (RelativeLayout) findViewById(R.id.signUp_layout);
+        signUpLayout.setVisibility(View.GONE);
+
+        newAccountTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (signUpLayout.getVisibility()==View.VISIBLE) {
+                    IMenuAnimation.slide_up(LoginActivity.this, signUpLayout);
+                    signUpLayout.setVisibility(View.INVISIBLE);
+                } else if(signUpLayout.getVisibility()==View.GONE) {
+                    signUpLayout.setVisibility(View.VISIBLE);
+                    IMenuAnimation.slide_down(LoginActivity.this, signUpLayout);
+                }
+            }
+        });
     }
 
     public void loginHandler(View view) {

@@ -81,7 +81,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         itemViewHolder.itemId.setText(Long.toString(items.get(i).getId()));
         itemViewHolder.itemName.setText(items.get(i).getName());
         itemViewHolder.itemDescription.setText(items.get(i).getDescription());
-        itemViewHolder.itemPrice.setText(Double.toString(items.get(i).getPrice()));
+        itemViewHolder.itemPrice.setText(Double.toString(items.get(i).getPrice())+" LE");
         itemViewHolder.itemRestaurantName.setText(items.get(i).getRestaurantName());
         Picasso.with(context).load(items.get(i).getPicture())
                 .error(R.drawable.no_image)
