@@ -1,6 +1,8 @@
 package com.sparta.imenu_client.service;
 
 import com.sparta.imenu_client.model.Item;
+import com.sparta.imenu_client.model.Order;
+import com.sparta.imenu_client.model.OrderCard;
 import com.sparta.imenu_client.model.User;
 import com.sparta.imenu_client.model.UserSpec;
 
@@ -17,8 +19,26 @@ import java.util.Map;
 public class Auxiliary {
 
     private static User currentUser;
+    public static String connectedToRest=null;
+    public static Order order;
+    public static int serviceTableSecretNumber;
+
+    public static void initOrder(){
+        order=new Order();
+        order.setState(1);
+        order.setUser(getCurrentUser());
+    }
+
+    public static void addToOrder(OrderCard orderCard){
+        order.addOrderCard(orderCard);
+    }
+
+    public static void removeFromOrder(OrderCard orderCard){
+        order.removeOrderCard(orderCard);
+    }
 
     public static List<Item> sortByRelevanceModified(List<Item> items, String[] queries) {
+
         Map<Integer, List<Item>> hashMap = new HashMap<Integer, List<Item>>();
         for(int i=0;i<items.size();i++){
             int rank = 0;

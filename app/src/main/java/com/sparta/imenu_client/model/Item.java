@@ -2,6 +2,7 @@ package com.sparta.imenu_client.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hamed on 3/19/16.
@@ -18,6 +19,7 @@ public class Item implements Serializable{
     private String picture;
     private float rating;
     private Section section;
+    private List<OrderCard> orderCards;
 
     public Item() {
     }
@@ -123,6 +125,15 @@ public class Item implements Serializable{
     public void setSection(Section section) {
         this.section = section;
     }
+
+    public List<OrderCard> getOrderCards() {
+        return orderCards;
+    }
+
+    public void setOrderCards(List<OrderCard> orderCards) {
+        this.orderCards = orderCards;
+    }
+
     @Override
     public String toString() {
         return "Item{" +

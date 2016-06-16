@@ -1,11 +1,9 @@
 package com.sparta.imenu_client.activity;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,9 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.model.Contact;
@@ -42,6 +38,7 @@ public class RestaurantActivity extends AppCompatActivity{
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Restaurant restaurant;
+    private FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +46,7 @@ public class RestaurantActivity extends AppCompatActivity{
 
         Intent myIntent = getIntent();
         restaurant = (Restaurant) myIntent.getSerializableExtra("restaurant");
-        Log.i("rest act",restaurant.getName());
+        Log.i("rest act", restaurant.getName());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.restaurant_toolbar);
         setSupportActionBar(toolbar);
@@ -69,6 +66,15 @@ public class RestaurantActivity extends AppCompatActivity{
 
         bindData(restaurant);
 
+        fab= (FloatingActionButton) findViewById(R.id.order_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getSupportFragmentManager();
+                OrderDialogFragment orderDialogFragment = OrderDialogFragment.newInstance("Order", fab);
+                orderDialogFragment.show(fm, "order_dialog_layout");
+            }
+        });
     }
 
 //    private void setUpSearch() {

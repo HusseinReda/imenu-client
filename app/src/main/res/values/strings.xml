@@ -70,4 +70,11 @@
     <string name="remove_picture">Remove picture?</string>
     <string name="warning">Warning !</string>
     <string name="ok">Ok</string>
+    <string name="action_disconnect">Disconnect from restaurant</string>
+    <string name="action_order">Order</string>
+    <string name="action_call_waiter">Call the waiter</string>
+    <string name="place_order">Place order</string>
+    <string name="action_connect">Connect to restaurant</string>
+    <string name="ex_111">Ex: 111</string>
+    <string name="connect">Connect</string>
 </resources>

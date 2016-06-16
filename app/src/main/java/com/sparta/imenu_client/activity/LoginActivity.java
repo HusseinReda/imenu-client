@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -66,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         // sign up toggle view
         newAccountTextView = (TextView) findViewById(R.id.newAccountTextView);
         signUpLayout = (RelativeLayout) findViewById(R.id.signUp_layout);
-        signUpLayout.setVisibility(View.GONE);
+        signUpLayout.setVisibility(View.INVISIBLE);
 
         newAccountTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (signUpLayout.getVisibility()==View.VISIBLE) {
                     IMenuAnimation.slide_up(LoginActivity.this, signUpLayout);
                     signUpLayout.setVisibility(View.INVISIBLE);
-                } else if(signUpLayout.getVisibility()==View.GONE) {
+                } else if(signUpLayout.getVisibility()==View.INVISIBLE) {
                     signUpLayout.setVisibility(View.VISIBLE);
                     IMenuAnimation.slide_down(LoginActivity.this, signUpLayout);
                 }
@@ -105,7 +106,8 @@ public class LoginActivity extends AppCompatActivity {
         User newUser = new User(fullName.getText().toString(),
                 email.getText().toString(),
                 password.getText().toString(),
-                gender.getText().toString());
+                gender.getText().toString(),
+                1);
 
         Calendar newDate = Calendar.getInstance();
         newDate.set(newDate.get(Calendar.YEAR), newDate.get(Calendar.MONTH), newDate.get(Calendar.DAY_OF_MONTH));

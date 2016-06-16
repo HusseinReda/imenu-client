@@ -26,6 +26,7 @@ public class User implements Serializable {
     private String city;
     private String picture;
     private byte[] image;
+    private int state;
     ///////
     private ArrayList<Contact> contacts;
     //////
@@ -37,7 +38,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String name, String email, String password, String gender, Date dateOfBirth, String country, String city) {
+    public User(String name, String email, String password, String gender, Date dateOfBirth, String country, String city, int state) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -45,14 +46,17 @@ public class User implements Serializable {
         this.dateOfBirth = dateOfBirth;
         this.country = country;
         this.city = city;
+        this.state = state;
     }
 
-    public User(String name, String email, String password, String gender) {
+
+    public User(String name, String email, String password, String gender, int state) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.gender = gender;
         this.preferences=new ArrayList<String>();
+        this.state = state;
     }
 
     public int getId() {
@@ -165,6 +169,14 @@ public class User implements Serializable {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 
     //    public void addPreference(String preference){
