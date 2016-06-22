@@ -12,9 +12,11 @@
     </android.support.v7.widget.RecyclerView>
 
     <Button
+        android:id="@+id/place_order_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/place_order"
         android:layout_weight="1"
+        android:layout_margin="20dp"
         android:layout_gravity="bottom|end|right"/>
 </LinearLayout>

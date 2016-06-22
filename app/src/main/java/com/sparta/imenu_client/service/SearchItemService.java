@@ -93,7 +93,7 @@ public class SearchItemService extends AsyncTask<Void, Void, List<Item>> {
                 }
                 String[] queries = query.split(" ");
                 itemsss = Auxiliary.sortByRelevanceModified(itemsss, queries);
-                ItemRecyclerViewAdapter adapter = new ItemRecyclerViewAdapter(itemsss, context.getActivity());
+                ItemRecyclerViewAdapter adapter = new ItemRecyclerViewAdapter(itemsss, context.getActivity(),null);
                 recyclerView.setAdapter(adapter);
                 Log.i("search item service", String.valueOf(items.size()) + " 4");
             } else {

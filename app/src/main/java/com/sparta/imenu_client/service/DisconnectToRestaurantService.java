@@ -1,11 +1,13 @@
 package com.sparta.imenu_client.service;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.sparta.imenu_client.R;
+import com.sparta.imenu_client.activity.HomeActivity;
 import com.sparta.imenu_client.model.ConnectionRequest;
 
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -48,6 +50,9 @@ public class DisconnectToRestaurantService extends AsyncTask<Void,Void,Boolean> 
             Auxiliary.connectedToRest = null;
             Auxiliary.serviceTableSecretNumber=-1;
             Toast.makeText(context, "You have been disconnected successfully", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.getApplicationContext().startActivity(intent);
         }
         else
             Toast.makeText(context, "There's a problem in the server\nPlease try again later", Toast.LENGTH_SHORT).show();

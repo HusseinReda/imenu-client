@@ -16,6 +16,11 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,37 +32,42 @@
             android:maxWidth="80dp"
             android:adjustViewBounds="true"
             />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/remove_order_item"
+            android:src="@drawable/remove_icon"
+            android:layout_alignParentRight="true"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/order_item_card_view_name"
             android:layout_toRightOf="@+id/order_item_card_view_image"
-            android:layout_alignParentTop="true"
+            android:layout_below="@id/remove_order_item"
             />
-        <TextView
+
+        <android.support.v7.widget.AppCompatSpinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/order_item_card_view_description"
-            android:layout_toRightOf="@+id/order_item_card_view_image"
-            android:layout_below="@id/order_item_card_view_name"
-            android:layout_alignParentTop="true"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/order_item_card_view_quantity"
-            android:layout_toRightOf="@+id/order_item_card_view_name"
-            android:layout_alignParentTop="true"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/remove_order_item"
-            android:text="@string/remove"
+            android:id="@+id/order_item_card_view_spinner"
             android:layout_below="@+id/order_item_card_view_image"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quantity"
+            android:layout_toLeftOf="@id/order_item_card_view_spinner"
+            android:layout_alignParentBottom="true"
+            android:clickable="true"
+            android:layout_marginRight="10dp"
+            />
+
 
 
     </RelativeLayout>

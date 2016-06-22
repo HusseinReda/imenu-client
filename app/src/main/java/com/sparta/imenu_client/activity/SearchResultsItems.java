@@ -54,7 +54,7 @@ public class SearchResultsItems extends Fragment implements SwipeRefreshLayout.O
 
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
-        adapter= new ItemRecyclerViewAdapter(new ArrayList<Item>(),getContext());
+        adapter= new ItemRecyclerViewAdapter(new ArrayList<Item>(),getContext(),null);
         recyclerView.setAdapter(adapter);
 
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.search_item_swipe_refresh_layout);

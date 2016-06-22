@@ -8,12 +8,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sparta.imenu_client.R;
 import com.sparta.imenu_client.activity.ItemActivity;
 import com.sparta.imenu_client.model.Item;
+import com.sparta.imenu_client.model.OrderCard;
+import com.sparta.imenu_client.service.Auxiliary;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -25,7 +28,8 @@ import java.util.List;
 public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemViewHolder> {
 
     List<Item> items;
-    Context context;
+    static Context context;
+    static String restaurantName;
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
         CardView cardView;
@@ -36,6 +40,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         TextView itemRestaurantName;
         TextView itemId;
         public Item currentItem;
+        Button addToOrder;
 
         ItemViewHolder(final View itemView) {
             super(itemView);
@@ -47,6 +52,21 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
             itemPrice =(TextView)itemView.findViewById(R.id.cardview_item_price);
             itemRestaurantName =(TextView)itemView.findViewById(R.id.cardview_item_restaurant_name);
             itemId = (TextView)itemView.findViewById(R.id.cardview_item_id);
+            addToOrder = (Button) itemView.findViewById(R.id.add_item_to_order);
+
+            if(Auxiliary.connectedToRest!=null && Auxiliary.connectedToRest.equals(restaurantName))
+                addToOrder.setVisibility(View.VISIBLE);
+            else
+                addToOrder.setVisibility(View.GONE);
+
+            addToOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    QuantityPickerDialog quantityPickerDialog = new QuantityPickerDialog(context,currentItem,false);
+                    quantityPickerDialog.show();
+                }
+            });
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -60,9 +80,10 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         }
     }
 
-    public ItemRecyclerViewAdapter(List<Item> items, Context context) {
+    public ItemRecyclerViewAdapter(List<Item> items, Context context,String restaurantName) {
         this.items = items;
         this.context=context;
+        this.restaurantName=restaurantName;
     }
 
     @Override
@@ -77,6 +98,11 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
 
         Item currentItem=items.get(i);
         itemViewHolder.currentItem=currentItem;
+
+        if(Auxiliary.connectedToRest!=null && Auxiliary.connectedToRest.equals(restaurantName))
+            itemViewHolder.addToOrder.setVisibility(View.VISIBLE);
+        else
+            itemViewHolder.addToOrder.setVisibility(View.GONE);
 
         itemViewHolder.itemId.setText(Long.toString(items.get(i).getId()));
         itemViewHolder.itemName.setText(items.get(i).getName());

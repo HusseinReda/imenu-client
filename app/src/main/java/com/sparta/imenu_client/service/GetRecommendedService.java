@@ -83,7 +83,7 @@ public class GetRecommendedService extends AsyncTask<Void, Void, List<Item>> {
                 Item itemmm = mapper.convertValue(items.get(i), Item.class);
                 itemsss.add(itemmm);
             }
-            ItemRecyclerViewAdapter adapter= new ItemRecyclerViewAdapter(itemsss,context);
+            ItemRecyclerViewAdapter adapter= new ItemRecyclerViewAdapter(itemsss,context,null);
             recyclerView.setAdapter(adapter);
             Log.i("recommend service", String.valueOf(items.size()) + " 4");
         }

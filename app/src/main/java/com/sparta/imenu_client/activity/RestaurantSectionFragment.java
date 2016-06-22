@@ -20,6 +20,7 @@ public class RestaurantSectionFragment extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private Section section;
+    private String restaurantName;
 
     public RestaurantSectionFragment() {
         // Required empty public constructor
@@ -38,11 +39,12 @@ public class RestaurantSectionFragment extends Fragment {
 
         Bundle extras=getArguments();
         section = (Section) extras.get("section");
+        restaurantName = (String) extras.get("restaurantName");
         Log.i("section frag", String.valueOf(section.getItems().size()));
 
         View view= inflater.inflate(R.layout.fragment_restaurant_section,container,false);
 
-        ItemRecyclerViewAdapter adapter = new ItemRecyclerViewAdapter(section.getItems(),getActivity());
+        ItemRecyclerViewAdapter adapter = new ItemRecyclerViewAdapter(section.getItems(),getActivity(),restaurantName);
         recyclerView = (RecyclerView) view.findViewById(R.id.restaurant_section_recycler_view);
         linearLayoutManager=new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);

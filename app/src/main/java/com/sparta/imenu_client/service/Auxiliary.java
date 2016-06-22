@@ -25,7 +25,7 @@ public class Auxiliary {
 
     public static void initOrder(){
         order=new Order();
-        order.setState(1);
+        order.setState(2);
         order.setUser(getCurrentUser());
     }
 
@@ -153,5 +153,25 @@ public class Auxiliary {
 
     public static void setCurrentUser(User currentUser) {
         Auxiliary.currentUser = currentUser;
+    }
+
+    public static int getItemIndexInOrder (long itemId){
+
+        for(int i=0;i<order.getOrderCardList().size();i++){
+            if(order.getOrderCardList().get(i).getItem().getId()==itemId)
+                return i;
+        }
+        return -1;
+    }
+
+    public static void updateItemQuantity(long itemId,int quantity) {
+        for (int i = 0; i < order.getOrderCardList().size(); i++) {
+            if (order.getOrderCardList().get(i).getItem().getId() == itemId)
+                order.getOrderCardList().get(i).setCount(quantity);
+        }
+    }
+
+    public static void clearOrder() {
+        order=new Order();
     }
 }

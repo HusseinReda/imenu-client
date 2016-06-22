@@ -14,8 +14,13 @@
         android:title="@string/action_connect"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_connected_restaurant"
+        android:orderInCategory="811"
+        android:title="@string/action_connect_restaurant"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_disconnect_from_restaurant"
-        android:orderInCategory="810"
+        android:orderInCategory="820"
         android:title="@string/action_disconnect"
         app:showAsAction="never" />
     <item

@@ -1,5 +1,6 @@
 package com.sparta.imenu_client.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,9 @@ public class Order {
     List<OrderCard> orderCardList;
 
     public Order() {
+        orderCardList = new ArrayList<>();
     }
+
 
     public Order(int state, User user, List<OrderCard> orderCardList, long serviceTableId) {
         this.state = state;
@@ -88,4 +91,21 @@ public class Order {
         orderCardList.remove(orderCard);
     }
 
+//    @Override
+//    public String toString() {
+//        return "Id: "+getId()+"\nstate: "+getState()+"\nuser: "+user.getName()+"\nserviceTable Id: "+serviceTableId+
+//                "\norderCardList Size: "+getOrderCardList().size();
+//    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", payCheck=" + payCheck +
+                ", state=" + state +
+                ", user=" + user +
+                ", serviceTableId=" + serviceTableId +
+                ", orderCardList=" + orderCardList +
+                '}';
+    }
 }

@@ -43,18 +43,7 @@ tools:callingActivity="com.sparta.imenu_client.activity.RestaurantActivity">
             android:layout_weight="8">
             <include layout="@layout/content_restaurant" />
         </FrameLayout>
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            android:id="@+id/order_button"
-            android:src="@drawable/cart_icon"
-            app:backgroundTint="#c2bfe1"
-            android:tint="#000000"
-            android:clickable="true"
-            app:fabSize="normal"
-            app:layout_anchorGravity="bottom|right|end" />
+
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

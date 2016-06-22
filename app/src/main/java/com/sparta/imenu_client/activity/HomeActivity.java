@@ -4,8 +4,11 @@ import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +16,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,7 +32,6 @@ import com.sparta.imenu_client.model.ConnectionRequest;
 import com.sparta.imenu_client.model.Item;
 import com.sparta.imenu_client.model.Order;
 import com.sparta.imenu_client.model.OrderCard;
-import com.sparta.imenu_client.model.ServiceTable;
 import com.sparta.imenu_client.service.AddOrderService;
 import com.sparta.imenu_client.service.Auxiliary;
 import com.sparta.imenu_client.service.CallWaiterService;
@@ -38,7 +39,9 @@ import com.sparta.imenu_client.service.ConnectToRestaurantService;
 import com.sparta.imenu_client.service.DisconnectToRestaurantService;
 import com.sparta.imenu_client.service.GetAllUserSpecService;
 import com.sparta.imenu_client.service.GetRecommendedService;
+import com.sparta.imenu_client.service.GetRestaurantByNameService;
 import com.sparta.imenu_client.service.GetUserByEmailService;
+import com.sparta.imenu_client.userInterface.ItemRecyclerViewAdapter;
 import com.sparta.imenu_client.userInterface.LogoutDialog;
 
 import java.util.ArrayList;
@@ -51,6 +54,13 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
     private LinearLayoutManager linearLayoutManager;
     private ProgressBar progressBar;
     private SwipeRefreshLayout swipeRefreshLayout;
+    MenuItem orderMenuItem;
+    MenuItem connectMenuItem;
+    MenuItem disconnectMenuItem;
+    MenuItem callWaiterMenuItem;
+    MenuItem restaurantMenuItem;
+    private FragmentManager fm;
+    private OrderDialogFragment orderDialogFragment;
 
     public HomeActivity() {
     }
@@ -90,8 +100,9 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
         linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 //
-//        ItemRecyclerViewAdapter adapter= new ItemRecyclerViewAdapter(items,this);
-//        recyclerView.setAdapter(adapter);
+        List<Item> tempItems = new ArrayList<>();
+        ItemRecyclerViewAdapter adapter= new ItemRecyclerViewAdapter(tempItems,this,null);
+        recyclerView.setAdapter(adapter);
 
         GetRecommendedService getRecommendedService = new GetRecommendedService(this,recyclerView,progressBar,swipeRefreshLayout);
         getRecommendedService.execute();
@@ -111,23 +122,30 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.template_menu, menu);
-        MenuItem orderItem = menu.findItem(R.id.action_order);
-        MenuItem connectItem = menu.findItem(R.id.action_connect_to_restaurant);
-        MenuItem disconnectItem = menu.findItem(R.id.action_disconnect_from_restaurant);
-        MenuItem callWaiterItem = menu.findItem(R.id.action_call_waiter);
-//        if(Auxiliary.connectedToRest==null){
-//            orderItem.setVisible(false);
-//            callWaiterItem.setVisible(false);
-//            disconnectItem.setVisible(true);
-//            connectItem.setVisible(true);
-//        }
-//        else
-//            orderItem.setVisible(true);
-//            callWaiterItem.setVisible(true);
-//            disconnectItem.setVisible(false);
-//            connectItem.setVisible(true);
-
+        orderMenuItem = menu.findItem(R.id.action_order);
+        connectMenuItem = menu.findItem(R.id.action_connect_to_restaurant);
+        disconnectMenuItem = menu.findItem(R.id.action_disconnect_from_restaurant);
+        callWaiterMenuItem = menu.findItem(R.id.action_call_waiter);
+        restaurantMenuItem = menu.findItem(R.id.action_connected_restaurant);
+        refreshMenu();
         return true;
+    }
+
+    public void refreshMenu() {
+        if(Auxiliary.connectedToRest==null){
+            orderMenuItem.setVisible(false);
+            callWaiterMenuItem.setVisible(false);
+            disconnectMenuItem.setVisible(false);
+            restaurantMenuItem.setVisible(false);
+            connectMenuItem.setVisible(true);
+        }
+        else {
+            orderMenuItem.setVisible(true);
+            callWaiterMenuItem.setVisible(true);
+            disconnectMenuItem.setVisible(true);
+            restaurantMenuItem.setVisible(true);
+            connectMenuItem.setVisible(false);
+        }
     }
 
     @Override
@@ -145,13 +163,12 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             case R.id.action_connect_to_restaurant:
                 connectionDialog();
-                Log.i("home","connect clicked");
+                Log.i("home", "connect clicked");
+                refreshMenu();
                 return true;
 
             case R.id.action_disconnect_from_restaurant:
-                ConnectionRequest connectionRequest = new ConnectionRequest(Auxiliary.getCurrentUser(),Auxiliary.serviceTableSecretNumber);
-                DisconnectToRestaurantService disconnectToRestaurantService = new DisconnectToRestaurantService(this,connectionRequest);
-                disconnectToRestaurantService.execute();
+                disconnectDialog();
                 return true;
 
             case R.id.action_call_waiter:
@@ -161,21 +178,54 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             case R.id.action_order:
                 Log.i("home", "order clicked");
-                List<OrderCard> orderCards = new ArrayList<OrderCard>();
-                Item item1 = new Item("Mighty Bucket Meal","KFC","chicken",48.18,"2 pieces chicken + 3 pieces chicken strips + small French fries + small coleslaw salad + bun + garlic mayonnaise sauce + dynamite sauce + soft drink",null,null);
-                item1.setId(1);
-                OrderCard orderCard = new OrderCard(item1,4,2);
-                orderCards.add(orderCard);
-//                ServiceTable serviceTable = new ServiceTable("KFC",111,1);
-//                serviceTable.setId(1);
-                Order order = new Order(2,Auxiliary.getCurrentUser(),orderCards,1);
-                AddOrderService addOrderService = new AddOrderService(this,order);
-                addOrderService.execute();
+//                List<OrderCard> orderCards = new ArrayList<OrderCard>();
+//                Item item1 = new Item("Mighty Bucket Meal","KFC","chicken",48.18,"2 pieces chicken + 3 pieces chicken strips + small French fries + small coleslaw salad + bun + garlic mayonnaise sauce + dynamite sauce + soft drink",null,null);
+//                item1.setId(1);
+//                OrderCard orderCard = new OrderCard(item1,4,2);
+//                orderCards.add(orderCard);
+//                Order order = new Order(2,Auxiliary.getCurrentUser(),orderCards,1);
+//                AddOrderService addOrderService = new AddOrderService(this,order);
+//                addOrderService.execute();
+                fm = getSupportFragmentManager();
+                orderDialogFragment = OrderDialogFragment.newInstance("Order");
+                orderDialogFragment.show(fm, "order_dialog_layout");
+
                 return true;
 
+            case R.id.action_connected_restaurant:
+                GetRestaurantByNameService getRestaurantByNameService = new GetRestaurantByNameService(this,Auxiliary.connectedToRest);
+                getRestaurantByNameService.execute();
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void disconnectDialog() {
+        AlertDialog.Builder disconnectDialogBuilder = new AlertDialog.Builder(this);
+        disconnectDialogBuilder.setMessage(R.string.dialog_disconnect);
+        disconnectDialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                ConnectionRequest connectionRequest = new ConnectionRequest(Auxiliary.getCurrentUser(),Auxiliary.serviceTableSecretNumber);
+                DisconnectToRestaurantService disconnectToRestaurantService = new DisconnectToRestaurantService(HomeActivity.this,connectionRequest);
+                try {
+                    disconnectToRestaurantService.execute().get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                refreshMenu();
+                if(Auxiliary.connectedToRest==null)
+                    Auxiliary.order=null;
+            }
+        });
+        disconnectDialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        AlertDialog disconnectDialog = disconnectDialogBuilder.create();
+        disconnectDialog.show();
     }
 
     private void connectionDialog() {
@@ -196,8 +246,13 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
                 ConnectionRequest connectionRequest = new ConnectionRequest(Auxiliary.getCurrentUser(),secretNumber);
                 ConnectToRestaurantService connectToRestaurantService = new ConnectToRestaurantService(HomeActivity.this,
                         connectionRequest);
-                connectToRestaurantService.execute();
+                try {
+                    connectToRestaurantService.execute().get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 dialog.dismiss();
+                refreshMenu();
             }
         });
 
@@ -211,3 +266,4 @@ public class HomeActivity extends AppCompatActivity implements SwipeRefreshLayou
         getRecommendedService.execute();
     }
 }
+

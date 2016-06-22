@@ -1,5 +1,6 @@
 package com.sparta.imenu_client.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sparta.imenu_client.service.HealthIssueService;
 import com.sparta.imenu_client.service.PreferenceService;
 import com.sparta.imenu_client.service.RestrictionService;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by Hussein Abu Maash on 3/10/2016.
  */
 
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class User implements Serializable {
     private int id;
     private String name;

@@ -68,4 +68,15 @@ public class OrderCard {
     public void setOrder(Order order) {
         this.order = order;
     }
+
+    @Override
+    public String toString() {
+        return "OrderCard{" +
+                "id=" + id +
+                ", item=" + item +
+                ", count=" + count +
+                ", state=" + state +
+                ", order=" + order +
+                '}';
+    }
 }
